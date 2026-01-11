@@ -30,7 +30,16 @@ This unit includes:
 
 ---
 
-## Notes
+## Unit Presentation
 
-Detailed unit notes are provided as part of the course material and
-may be refined iteratively without affecting the academic structure.
+- 📄 **Supervised Learning Algorithms**
+  - [Download / View PDF](../ppt/UNIT_4_Supervised_Learning_Algorithms.pdf)
+
+---
+
+## Unit Notes
+
+- [Unit 4 Notes (Markdown)](../notes/unit-04/unit-04-notes.md)
+
+Detailed unit notes are provided as part of the course material and may be refined iteratively without affecting the academic structure.
+  - [Download / View PDF](../ppt/UNIT_4_Supervised_Learning_Algorithms.pdf)

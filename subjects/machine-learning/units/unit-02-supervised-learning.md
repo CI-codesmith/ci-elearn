@@ -31,7 +31,16 @@ This unit includes:
 
 ---
 
-## Notes
+## Unit Presentation
 
-Detailed unit notes are provided as part of the course material and
-may be refined iteratively without affecting the academic structure.
+- 📄 **Data Preprocessing**
+  - [Download / View PDF](../ppt/UNIT_2_Data_Preprocessing.pdf)
+
+---
+
+## Unit Notes
+
+- [Unit 2 Notes (Markdown)](../notes/unit-02/unit-02-notes.md)
+
+Detailed unit notes are provided as part of the course material and may be refined iteratively without affecting the academic structure.
+  - [Download / View PDF](../ppt/UNIT_2_Data_Preprocessing.pdf)
