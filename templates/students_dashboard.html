@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+<h2>Student Dashboard</h2>
+
+<p>
+<b>Name:</b> {{ student.user.username }}<br>
+<b>Branch:</b> {{ student.branch }}<br>
+<b>Roll:</b> {{ student.roll_number }}
+</p>
+
+<h3>Machine Learning (316316)</h3>
+
+<table style="border-collapse: collapse; width: 100%; border: 1px solid black;">
+    <tr>
+        <th>Unit</th>
+        <th>Type</th>
+        <th>Title</th>
+        <th>Max Marks</th>
+        <th>Status</th>
+        <th>Marks</th>
+    </tr>
+
+    {% for item in activities_data %}
+    <tr>
+        <td>{{ item.activity.unit }}</td>
+        <td>{{ item.activity.get_activity_type_display }}</td>
+        <td>{{ item.activity.title }}</td>
+        <td>{{ item.activity.max_marks }}</td>
+        {% if item.submission %}
+            <td>Completed</td>
+            <td>{{ item.submission.marks_obtained|default:"-" }}</td>
+        {% else %}
+            <td>Pending</td>
+            <td>-</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+<p>
+<a href="https://ci-codesmith.github.io/ci-elearn/" target="_blank">
+Open Course Content (ci-elearn)
+</a>
+</p>
+
+</body>
+</html>
