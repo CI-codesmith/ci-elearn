@@ -9,9 +9,8 @@ from django.contrib import messages
 
 @login_required
 def student_dashboard(request):
-    try:
-        student = Student.objects.get(user=request.user)
-    except Student.DoesNotExist:
+    student = Student.objects.filter(user=request.user).first()
+    if not student:
         return HttpResponse(
             "<h2>This account is not a student account.</h2>"
             "<p>Please login using a student roll-number ID.</p>"
