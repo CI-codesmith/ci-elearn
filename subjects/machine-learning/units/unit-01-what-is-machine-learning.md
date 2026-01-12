@@ -84,7 +84,11 @@ behind Machine Learning.
 
 ## Unit Notes
 
-- [Unit 1 Notes (PDF)](../notes/unit-01/unit-01-notes.pdf)
-- [Unit 1 Notes (Markdown)](../notes/unit-01/unit-01-notes.md)
 
 Detailed unit notes are provided as part of the course material and may be refined iteratively without affecting the academic structure.
+
+---
+## Microprojects
+
+- 🔧 **Machine Learning Microprojects**
+  - [View Microprojects](../microprojects/)

@@ -43,7 +43,12 @@ This unit includes:
 
 ## Unit Notes
 
-- [Unit 3 Notes (Markdown)](../notes/unit-03/unit-03-notes.md)
 
 Detailed unit notes are provided as part of the course material and may be refined iteratively without affecting the academic structure.
   - [Download / View PDF](../ppt/UNIT_3_Feature_Selection_and_Extraction.pdf)
+
+---
+## Microprojects
+
+- 🔧 **Machine Learning Microprojects**
+  - [View Microprojects](../microprojects/)

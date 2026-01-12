@@ -42,7 +42,12 @@ This unit includes:
 
 ## Unit Notes
 
-- [Unit 5 Notes (Markdown)](../notes/unit-05/unit-05-notes.md)
 
 Detailed unit notes are provided as part of the course material and may be refined iteratively without affecting the academic structure.
   - [Download / View PDF](../ppt/UNIT_5_Unsupervised_Learning_Algorithms.pdf)
+
+---
+## Microprojects
+
+- 🔧 **Machine Learning Microprojects**
+  - [View Microprojects](../microprojects/)
