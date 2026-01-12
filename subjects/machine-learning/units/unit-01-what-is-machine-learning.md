@@ -28,13 +28,21 @@ After completing this unit, learners will be able to:
 
 ## Expected Learning Outcomes
 
-Learners will gain the ability to:
-
-- Clearly articulate what Machine Learning is and is not
-- Classify ML problems into supervised, unsupervised, and reinforcement learning
-- Relate ML concepts to practical engineering and data-driven systems
-
 ---
+
+## Learning Components
+
+This unit includes:
+
+- Lecture notes and presentations
+- Practicals aligned with foundational concepts
+- Microprojects:
+  - [Microproject 1.1: Introduction to ML Concepts](../microprojects/MICROPROJECT_1_1.md)
+  - [Microproject 1.2: Data Exploration Basics](../microprojects/MICROPROJECT_1_2.md)
+  - [Microproject 1.3: Simple Classification](../microprojects/MICROPROJECT_1_3.md)
+  - [Microproject 1.4: ML Workflow Overview](../microprojects/MICROPROJECT_1_4.md)
+- Formative and summative assessments
+- Supplementary learning resources
 
 ## Unit Presentation
 

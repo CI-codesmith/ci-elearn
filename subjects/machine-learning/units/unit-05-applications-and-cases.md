@@ -25,7 +25,10 @@ This unit includes:
 
 - Case-study-based lectures
 - Applied practicals
-- Capstone-style microprojects
+- Microprojects:
+  - [Microproject 5.1: Real-World Application](../microprojects/MICROPROJECT_5_1.md)
+  - [Microproject 5.2: Case Study Analysis](../microprojects/MICROPROJECT_5_2.md)
+  - [Microproject 5.3: Ethical Considerations](../microprojects/MICROPROJECT_5_3.md)
 - Comprehensive assessments
 
 ---

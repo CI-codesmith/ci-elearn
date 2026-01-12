@@ -25,7 +25,12 @@ This unit includes:
 
 - Lecture notes and presentations
 - Practicals on evaluation metrics and validation
-- Microprojects involving performance analysis
+- Microprojects:
+  - [Microproject 4.1: Cross-Validation](../microprojects/MICROPROJECT_4_1.md)
+  - [Microproject 4.2: Hyperparameter Tuning](../microprojects/MICROPROJECT_4_2.md)
+  - [Microproject 4.3: Bias-Variance Tradeoff](../microprojects/MICROPROJECT_4_3.md)
+  - [Microproject 4.4: Model Comparison](../microprojects/MICROPROJECT_4_4.md)
+  - [Microproject 4.5: Performance Metrics](../microprojects/MICROPROJECT_4_5.md)
 - Assessments testing interpretation and reasoning
 
 ---

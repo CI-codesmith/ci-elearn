@@ -25,7 +25,10 @@ This unit includes:
 
 - Lecture notes and presentations
 - Practicals focused on pattern discovery
-- One or more microprojects
+- Microprojects:
+  - [Microproject 3.1: Clustering Algorithms](../microprojects/MICROPROJECT_3_1.md)
+  - [Microproject 3.2: Dimensionality Reduction](../microprojects/MICROPROJECT_3_2.md)
+  - [Microproject 3.3: Anomaly Detection](../microprojects/MICROPROJECT_3_3.md)
 - Assessments covering conceptual understanding
 - Supplementary intuition-building resources
 

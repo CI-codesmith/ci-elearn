@@ -25,7 +25,12 @@ This unit includes:
 
 - Lecture notes and presentations
 - Practicals aligned with supervised learning concepts
-- One or more microprojects
+- Microprojects:
+  - [Microproject 2.1: Linear Regression](../microprojects/MICROPROJECT_2_1.md)
+  - [Microproject 2.2: Logistic Regression](../microprojects/MICROPROJECT_2_2.md)
+  - [Microproject 2.3: Decision Trees](../microprojects/MICROPROJECT_2_3.md)
+  - [Microproject 2.4: Model Evaluation Basics](../microprojects/MICROPROJECT_2_4.md)
+  - [Microproject 2.5: Feature Engineering](../microprojects/MICROPROJECT_2_5.md)
 - Formative and summative assessments
 - Supplementary learning resources
 
