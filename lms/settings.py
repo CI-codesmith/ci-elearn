@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 
     'edusphere',
 
+    'internship',
+
 ]
 
 MIDDLEWARE = [
