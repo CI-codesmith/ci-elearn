@@ -1,32 +1,37 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from core.models import UserProfile, Role
 
 ROLE_DASHBOARD_MAP = {
-	'Student': 'portal_student_dashboard',
-	'Teacher': 'portal_teacher_dashboard',
-	'Intern': 'portal_intern_dashboard',
-	'Project': 'portal_project_dashboard',
-	'Accounts': 'portal_accounts_dashboard',
-	'Admin': 'portal_admin_dashboard',
+	'Student': 'portal:student_dashboard',
+	'Teacher': 'portal:teacher_dashboard',
+	'Intern': 'portal:intern_dashboard',
+	'Project': 'portal:project_dashboard',
+	'Accounts': 'portal:accounts_dashboard',
+	'Admin': 'portal:admin_dashboard',
 }
 
 @login_required
 def role_selector(request):
-	user_profile = UserProfile.objects.get(user=request.user)
-	roles = user_profile.roles.all()
+	profile, _ = UserProfile.objects.get_or_create(user=request.user)
+	roles = profile.roles.all()
 	role_list = []
 	for role in roles:
+		url_name = ROLE_DASHBOARD_MAP.get(role.name, 'portal:student_dashboard')
 		role_list.append({
 			'name': role.name,
 			'description': role.description,
-			'redirect_url': redirect(ROLE_DASHBOARD_MAP.get(role.name, 'portal_student_dashboard')).url
+			'redirect_url': reverse(url_name)
 		})
+	if len(role_list) == 1:
+		return redirect(role_list[0]['redirect_url'])
 	if request.method == 'POST':
 		selected_role = request.POST.get('role')
 		if selected_role in ROLE_DASHBOARD_MAP:
 			request.session['active_role'] = selected_role
-			return redirect(ROLE_DASHBOARD_MAP[selected_role])
+			return redirect(reverse(ROLE_DASHBOARD_MAP[selected_role]))
 	return render(request, 'portal/role_selector.html', {'roles': role_list})
 
 @login_required
@@ -54,8 +59,8 @@ def admin_dashboard(request):
 	return _dashboard(request, 'Admin')
 
 def _dashboard(request, role_name):
-	user_profile = UserProfile.objects.get(user=request.user)
-	enrollments = user_profile.enrollments.select_related('program', 'batch').all()
+	profile, _ = UserProfile.objects.get_or_create(user=request.user)
+	enrollments = profile.enrollments.select_related('program', 'batch').all()
 	active_role = request.session.get('active_role', role_name)
 	return render(request, 'portal/dashboard_base.html', {
 		'role': active_role,
