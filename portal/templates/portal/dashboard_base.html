@@ -1,22 +1,35 @@
 {% extends 'base.html' %}
+{% block title %}{{ role|title }} Dashboard - Chatake Innoworks CI-Platform{% endblock %}
 {% block content %}
   <h2>{{ role|title }} Dashboard</h2>
-  <p>Active Role: {{ role }}</p>
+  <p style="color: #666; margin-bottom: 1.5rem;">Active Role: <strong>{{ role }}</strong></p>
+  
   <h3>Programs & Batches</h3>
-  <ul>
-    {% for enrollment in enrollments %}
-      <li>{{ enrollment.program.name }} ({{ enrollment.program.code }}) - Batch: {{ enrollment.batch.name }} ({{ enrollment.batch.year }})</li>
-    {% empty %}
-      <li>No enrollments found.</li>
-    {% endfor %}
-  </ul>
-  <div class="dashboard-placeholders">
-    <h4>Sections Coming Soon:</h4>
+  {% if enrollments %}
     <ul>
-      <li>Announcements</li>
-      <li>Assignments</li>
-      <li>Progress</li>
-      <li>Resources</li>
+      {% for enrollment in enrollments %}
+        <li>
+          <strong>{{ enrollment.program.name }}</strong> ({{ enrollment.program.code }})
+          - Batch: <strong>{{ enrollment.batch.name }}</strong> ({{ enrollment.batch.year }})
+        </li>
+      {% endfor %}
     </ul>
+  {% else %}
+    <div class="empty-state">
+      <p>No enrollments found.</p>
+    </div>
+  {% endif %}
+
+  <h3>Coming Soon</h3>
+  <div class="dashboard-placeholders">
+    <p>The following features are under development:</p>
+    <ul>
+      <li>📢 Announcements</li>
+      <li>📝 Assignments</li>
+      <li>📊 Progress Tracking</li>
+      <li>📚 Resources & Materials</li>
+    </ul>
+  </div>
+{% endblock %}
   </div>
 {% endblock %}

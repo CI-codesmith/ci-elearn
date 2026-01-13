@@ -16,13 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
-
-def root_redirect(request):
-    return redirect("portal:role_selector")
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path("", root_redirect, name="root"),
+    path("", TemplateView.as_view(template_name="home.html"), name="root"),
     path("admin/", admin.site.urls),
     path("student/", include("students.urls")),
     path("assessments/", include("assessments.urls")),
