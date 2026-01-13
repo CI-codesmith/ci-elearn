@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Select Your Role</h2>
+  {% if roles|length == 1 %}
+    <script>window.location.href = '{{ roles.0.redirect_url }}';</script>
+  {% else %}
+    <div class="role-cards">
+      {% for role in roles %}
+        <div class="role-card">
+          <form method="post" action="">
+            {% csrf_token %}
+            <input type="hidden" name="role" value="{{ role.name }}">
+            <button type="submit">{{ role.name|title }}</button>
+          </form>
+          <p>{{ role.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

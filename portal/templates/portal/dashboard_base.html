@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ role|title }} Dashboard</h2>
+  <p>Active Role: {{ role }}</p>
+  <h3>Programs & Batches</h3>
+  <ul>
+    {% for enrollment in enrollments %}
+      <li>{{ enrollment.program.name }} ({{ enrollment.program.code }}) - Batch: {{ enrollment.batch.name }} ({{ enrollment.batch.year }})</li>
+    {% empty %}
+      <li>No enrollments found.</li>
+    {% endfor %}
+  </ul>
+  <div class="dashboard-placeholders">
+    <h4>Sections Coming Soon:</h4>
+    <ul>
+      <li>Announcements</li>
+      <li>Assignments</li>
+      <li>Progress</li>
+      <li>Resources</li>
+    </ul>
+  </div>
+{% endblock %}

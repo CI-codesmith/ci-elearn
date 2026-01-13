@@ -42,6 +42,12 @@ INSTALLED_APPS = [
     'courses',
     'assessments',
 
+    'core.apps.CoreConfig',
+
+    'portal',
+
+    'edusphere',
+
 ]
 
 MIDDLEWARE = [
