@@ -3,6 +3,8 @@ __pycache__/
 *.pyc
 db.sqlite3
 .env
+.env.local
+.env.*.local
 .DS_Store
 *.egg-info/
 dist/
@@ -11,3 +13,13 @@ build/
 .coverage
 htmlcov/
 *.log
+staticfiles/
+media/
+*.sqlite3
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cache/
+node_modules/

@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: chatake-lms
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --no-input
+    startCommand: gunicorn lms.wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        scope: build
+        value: ${SECRET_KEY}
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".chatakeinnoworks.com,localhost,127.0.0.1"
+      - key: DATABASE_URL
+        scope: build
+        value: ${DATABASE_URL}
+      - key: DJANGO_SUPERUSER_USERNAME
+        value: admin
+      - key: DJANGO_SUPERUSER_EMAIL
+        value: admin@chatakeinnoworks.com
+      - key: DJANGO_SUPERUSER_PASSWORD
+        scope: build
+        value: ${DJANGO_SUPERUSER_PASSWORD}
+
+databases:
+  - name: chatake-db
+    databaseName: chatake_lms
+    user: chatake_user
+    region: oregon
+    plan: free

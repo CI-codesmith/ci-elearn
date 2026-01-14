@@ -39,6 +39,67 @@
         flex-wrap: wrap;
     }
 
+    .btn {
+        padding: 0.75rem 2rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background-color: #7A1F2B;
+        color: #F7F6F3;
+    }
+
+    .btn-primary:hover {
+        background-color: #A02236;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary {
+        background-color: #B08D57;
+        color: #2E2E2E;
+    }
+
+    .btn-secondary:hover {
+        background-color: #C9A769;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-tertiary {
+        background-color: transparent;
+        color: #F7F6F3;
+        border: 2px solid #F7F6F3;
+    }
+
+    .btn-tertiary:hover {
+        background-color: #F7F6F3;
+        color: #2E2E2E;
+        transform: translateY(-2px);
+    }
+
+    .navbar-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(247, 246, 243, 0.3);
+    }
+
+    .navbar-buttons .btn {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
     .divisions-section {
         padding: 4rem 1.5rem;
         background-color: #F7F6F3;
@@ -290,8 +351,14 @@
         through cutting-edge research and practical applications.
     </p>
     <div class="cta-buttons">
-        <a href="{% url 'admin:login' %}" class="btn btn-primary">Student / Faculty Login</a>
-        <a href="{% url 'publicsite:about' %}" class="btn btn-tertiary">Explore Our Divisions</a>
+        <a href="{% url 'publiccatalog:course_list' %}" class="btn btn-primary">📚 Courses</a>
+        <a href="{% url 'publicsite:about' %}" class="btn btn-secondary">ℹ️ About Us</a>
+        <a href="/student/" class="btn btn-tertiary">👨‍🎓 Student Login</a>
+    </div>
+    <div class="navbar-buttons">
+        <a href="/admin/" class="btn btn-primary" style="background-color: #555;">🔐 Admin Login</a>
+        <a href="/portal/" class="btn btn-secondary">👨‍🏫 Faculty Portal</a>
+        <a href="{% url 'publicsite:contact' %}" class="btn btn-tertiary">📞 Contact</a>
     </div>
 </section>
 
