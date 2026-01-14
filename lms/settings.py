@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import os
 import dj_database_url
@@ -27,7 +28,19 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-t!*1ec)m87xwdxrgbp8km
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,*.chatakeinnoworks.com').split(',')
+# ALLOWED_HOSTS configuration for Render and custom domain
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'cielearn.onrender.com',              # Render service URL
+    'cielearn.chatakeinnoworks.com',      # Custom subdomain
+    '*.chatakeinnoworks.com',             # Wildcard for other subdomains
+]
+
+# Optional: Load from environment for additional flexibility
+if os.environ.get('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS.extend(os.environ.get('ALLOWED_HOSTS', '').split(','))
+
 if os.environ.get('RENDER_EXTERNAL_HOSTNAME'):
     ALLOWED_HOSTS.append(os.environ.get('RENDER_EXTERNAL_HOSTNAME'))
 
@@ -41,6 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework',
+    'rest_framework_simplejwt',
 
     'students',
     'courses',
@@ -63,6 +79,8 @@ INSTALLED_APPS = [
     'projects',
 
     'accounts',
+
+    'products',
 
 ]
 
@@ -169,6 +187,35 @@ LOGIN_REDIRECT_URL = '/admin/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'lms.authentication.SafeJWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+}
+
+PRODUCT_SEARCH_TIMEOUT_MS = int(os.environ.get('PRODUCT_SEARCH_TIMEOUT_MS', 500))
 
 # Production Security Settings
 if not DEBUG:
