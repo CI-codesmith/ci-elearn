@@ -2,42 +2,98 @@
 
 **Course:** 316316 - Machine Learning  
 **Semester:** 6 (Autumn 2025-26)  
-**Total Microprojects:** 5  
-**Total Duration:** 7-8 weeks  
+**Total Microprojects:** 21 (18 regular + 3 advanced)  
+**Total Duration:** 12-14 weeks  
 **Total Weight:** 75% of course assessment
 
 ---
 
-## 📋 Microprojects Overview
+## 📋 Complete Microprojects Structure
 
-| # | Title | Unit | Duration | Weight | Key Skills |
-|---|-------|------|----------|--------|------------|
-| 1.1 | Data Exploration Dashboard | 1 | 1 week | 10% | EDA, Visualization, Python |
-| 2.1 | Predictive Modeling Challenge | 2 | 1.5 weeks | 15% | Supervised Learning, Evaluation |
-| 3.1 | Pattern Discovery Project | 3 | 1.5 weeks | 15% | Unsupervised Learning, Clustering |
-| 4.1 | Neural Network Implementation | 4 | 2 weeks | 20% | Deep Learning, Neural Networks |
-| 5.1 | Responsible ML Analysis | 5 | 1.5 weeks | 15% | Ethics, Fairness, Bias Detection |
+### UNIT 1: Introduction to Machine Learning (4 Projects)
+| MP | Title | Duration | Weight |
+|---|-------|----------|--------|
+| 1.1 | Data Exploration Dashboard | 1 week | 8% |
+| 1.2 | Python ML Libraries Mastery | 1 week | 8% |
+| 1.3 | Traditional vs ML Comparison | 1 week | 8% |
+| 1.4 | Dataset Curation Project | 1.5 weeks | 9% |
+
+### UNIT 2: Data Preparation (5 Projects)
+| MP | Title | Duration | Weight |
+|---|-------|----------|--------|
+| 2.1 | Data Cleaning & Preprocessing | 1.5 weeks | 10% |
+| 2.2 | Handling Missing Values | 1.5 weeks | 10% |
+| 2.3 | Data Encoding & Scaling | 1.5 weeks | 10% |
+| 2.4 | Feature Engineering Basics | 2 weeks | 12% |
+| 2.5 | Data Visualization & Analysis | 2 weeks | 12% |
+
+### UNIT 3: Feature Selection (3 Projects)
+| MP | Title | Duration | Weight |
+|---|-------|----------|--------|
+| 3.1 | Feature Selection Methods | 1.5 weeks | 10% |
+| 3.2 | Correlation Analysis | 1.5 weeks | 10% |
+| 3.3 | Removing Irrelevant Features | 1.5 weeks | 10% |
+
+### UNIT 4: Supervised Learning (3 Projects)
+| MP | Title | Duration | Weight |
+|---|-------|----------|--------|
+| 4.1 | Classification Algorithms | 1.5 weeks | 10% |
+| 4.2 | Regression Algorithms | 1.5 weeks | 10% |
+| 4.3 | Model Evaluation & Metrics | 2 weeks | 12% |
+
+### UNIT 5: Unsupervised Learning (3 Projects)
+| MP | Title | Duration | Weight |
+|---|-------|----------|--------|
+| 5.1 | Clustering Techniques | 1.5 weeks | 10% |
+| 5.2 | Clustering Comparison | 1.5 weeks | 10% |
+| 5.3 | PCA & Dimensionality Reduction | 2 weeks | 12% |
+
+### UNIT 6: Ethics & Applications (3 Projects)
+| MP | Title | Duration | Weight |
+|---|-------|----------|--------|
+| 6.1 | ML Ethics & Bias | 1.5 weeks | 10% |
+| 6.2 | Model Deployment & Production | 2 weeks | 12% |
+| 6.3 | Real-World ML Applications | 1.5 weeks | 10% |
+
+### ADVANCED PROJECTS (3 Projects - For High-Performers)
+| MP | Title | Duration | Level |
+|---|-------|----------|-------|
+| ADV-1 | End-to-End ML Pipeline with Production | 3 weeks | Advanced |
+| ADV-2 | Deep Learning for Image Classification | 3 weeks | Advanced |
+| ADV-3 | Time Series Forecasting (ARIMA & LSTM) | 3 weeks | Advanced |
 
 ---
 
 ## 📅 Timeline
 
-### Week 1-2: Foundation
-- **MP 1.1:** Data Exploration (Due: Week 2)
-- Focus: Python, data handling, visualization
+### Weeks 1-3: Unit 1 - Foundation (4 Projects)
+- **MP 1.1-1.4:** Introduction to ML concepts
+- Focus: Python basics, EDA, dataset understanding
 
-### Week 3-4: Core ML
-- **MP 2.1:** Supervised Learning (Due: Week 4)
-- **MP 3.1:** Unsupervised Learning (Due: Week 4)
-- Focus: Model building, evaluation, pattern discovery
+### Weeks 4-7: Unit 2 - Data Preparation (5 Projects)
+- **MP 2.1-2.5:** Data cleaning, preprocessing, feature engineering
+- Focus: Data quality, transformation, visualization
 
-### Week 5-6: Advanced Topics
-- **MP 4.1:** Neural Networks (Due: Week 6)
-- Focus: Deep learning, architecture design
+### Weeks 8-9: Unit 3 - Feature Selection (3 Projects)
+- **MP 3.1-3.3:** Feature selection and correlation analysis
+- Focus: Feature importance, dimensionality reduction
 
-### Week 7-8: Ethics & Integration
-- **MP 5.1:** Responsible ML (Due: Week 8)
-- Focus: Ethics, production considerations
+### Weeks 10-11: Unit 4 - Supervised Learning (3 Projects)
+- **MP 4.1-4.3:** Classification & regression models
+- Focus: Model evaluation, metrics, performance
+
+### Weeks 12-13: Unit 5 - Unsupervised Learning (3 Projects)
+- **MP 5.1-5.3:** Clustering and dimensionality reduction
+- Focus: Pattern discovery, PCA
+
+### Week 14: Unit 6 - Ethics & Applications (3 Projects)
+- **MP 6.1-6.3:** Ethics, deployment, real-world applications
+- Focus: Responsible AI, production readiness
+
+### ADVANCED Track (Optional - 3 Projects)
+- **ADV-1 to ADV-3:** Intensive projects for high-performers
+- Duration: 3 weeks each
+- Focus: Production ML, deep learning, time series
 
 ---
 
@@ -45,11 +101,13 @@
 
 By completing all microprojects, students will be able to:
 
-1. **MP 1.1:** Perform comprehensive exploratory data analysis
-2. **MP 2.1:** Build and evaluate supervised learning models
-3. **MP 3.1:** Apply unsupervised techniques for pattern discovery
-4. **MP 4.1:** Design and train neural networks
-5. **MP 5.1:** Identify and address ethical concerns in ML
+**Unit 1:** Understand ML fundamentals and exploratory data analysis  
+**Unit 2:** Master data preparation and preprocessing techniques  
+**Unit 3:** Apply feature selection and dimensionality reduction  
+**Unit 4:** Build and evaluate supervised learning models  
+**Unit 5:** Apply unsupervised learning and clustering techniques  
+**Unit 6:** Deploy models and address ethical concerns in ML  
+**ADVANCED:** Develop production-ready ML systems (for high-performers)
 
 ---
 

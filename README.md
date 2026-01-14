@@ -51,4 +51,4 @@ are selectively integrated into this platform.
 
 ---
 
-© Chatake Innoworks Pvt. Ltd.
+© Chatake Innoworks Pvt, Ltd.

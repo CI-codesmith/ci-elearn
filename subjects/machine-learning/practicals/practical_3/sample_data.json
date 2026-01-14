@@ -1,0 +1,37 @@
+[
+  {
+    "ID": 1,
+    "Name": "Alice",
+    "Age": 28,
+    "Department": "Engineering",
+    "Salary": 75000
+  },
+  {
+    "ID": 2,
+    "Name": "Bob",
+    "Age": 34,
+    "Department": "Sales",
+    "Salary": 65000
+  },
+  {
+    "ID": 3,
+    "Name": "Charlie",
+    "Age": 29,
+    "Department": "Marketing",
+    "Salary": 60000
+  },
+  {
+    "ID": 4,
+    "Name": "Diana",
+    "Age": 31,
+    "Department": "Engineering",
+    "Salary": 80000
+  },
+  {
+    "ID": 5,
+    "Name": "Eve",
+    "Age": 26,
+    "Department": "HR",
+    "Salary": 55000
+  }
+]

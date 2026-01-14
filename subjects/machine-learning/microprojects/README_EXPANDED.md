@@ -2,9 +2,10 @@
 
 **Course:** 316316 - Machine Learning  
 **Semester:** 6 (Autumn 2025-26)  
-**Total Microprojects:** 21  
-**Group Size:** 3 students per group  
-**Total Duration:** 8-10 weeks  
+**Total Microprojects:** 21 (18 regular + 3 advanced)  
+**Group Size:** 3 students per group (regular projects)  
+**Individual Projects:** Advanced projects (optional)  
+**Total Duration:** 12-14 weeks  
 **Total Weight:** 75% of course assessment
 
 ---
@@ -36,42 +37,55 @@
 | 1.3 | Traditional vs ML Comparison | Algorithm comparison | 1 week | 8% |
 | 1.4 | Dataset Curation Project | Data collection & cleaning | 1.5 weeks | 9% |
 
-### UNIT 2: Supervised Learning (5 Projects)
+### UNIT 2: Data Preparation (5 Projects)
 
 | # | Title | Focus | Duration | Weight |
 |---|-------|-------|----------|--------|
-| 2.1 | Regression Modeling Challenge | Linear & Polynomial Regression | 1.5 weeks | 10% |
-| 2.2 | Classification Algorithms | Logistic, Decision Trees, SVM | 1.5 weeks | 10% |
-| 2.3 | Model Evaluation & Selection | Cross-validation, Metrics | 1.5 weeks | 10% |
-| 2.4 | Feature Engineering | Feature selection & creation | 2 weeks | 12% |
-| 2.5 | Hyperparameter Optimization | Grid search, Random search | 2 weeks | 12% |
+| 2.1 | Data Cleaning & Preprocessing | Data quality, handling outliers | 1.5 weeks | 10% |
+| 2.2 | Handling Missing Values | Imputation strategies | 1.5 weeks | 10% |
+| 2.3 | Data Encoding & Scaling | Feature transformation | 1.5 weeks | 10% |
+| 2.4 | Feature Engineering Basics | Feature creation & selection | 2 weeks | 12% |
+| 2.5 | Data Visualization & Analysis | Advanced EDA techniques | 2 weeks | 12% |
 
-### UNIT 3: Unsupervised Learning (4 Projects)
-
-| # | Title | Focus | Duration | Weight |
-|---|-------|-------|----------|--------|
-| 3.1 | Clustering Analysis | K-Means, Hierarchical | 1.5 weeks | 10% |
-| 3.2 | Dimensionality Reduction | PCA, t-SNE | 1.5 weeks | 10% |
-| 3.3 | Anomaly Detection | Isolation Forest, One-Class SVM | 2 weeks | 12% |
-| 3.4 | Pattern Discovery Challenge | Advanced clustering techniques | 2 weeks | 12% |
-
-### UNIT 4: Advanced Topics (5 Projects)
+### UNIT 3: Feature Selection (3 Projects)
 
 | # | Title | Focus | Duration | Weight |
 |---|-------|-------|----------|--------|
-| 4.1 | Neural Network Fundamentals | Feedforward networks | 2 weeks | 12% |
-| 4.2 | Convolutional Neural Networks | CNN for image classification | 2.5 weeks | 15% |
-| 4.3 | Recurrent Neural Networks | RNN, LSTM for sequences | 2.5 weeks | 15% |
-| 4.4 | Ensemble Methods | Bagging, Boosting, Stacking | 2 weeks | 12% |
-| 4.5 | Transfer Learning | Pre-trained models | 2.5 weeks | 15% |
+| 3.1 | Feature Selection Methods | Variance, correlation analysis | 1.5 weeks | 10% |
+| 3.2 | Correlation Analysis | Heatmaps, feature relationships | 1.5 weeks | 10% |
+| 3.3 | Removing Irrelevant Features | Feature removal, model comparison | 1.5 weeks | 10% |
 
-### UNIT 5: Ethics, Production & Applications (3 Projects)
+### UNIT 4: Supervised Learning (3 Projects)
 
 | # | Title | Focus | Duration | Weight |
 |---|-------|-------|----------|--------|
-| 5.1 | Bias & Fairness Analysis | ML fairness metrics | 2 weeks | 12% |
-| 5.2 | Model Deployment | Flask/Docker deployment | 2 weeks | 12% |
-| 5.3 | Ethics in Practice | Case studies & solutions | 2 weeks | 12% |
+| 4.1 | Classification Algorithms | Logistic Regression, Decision Trees | 1.5 weeks | 10% |
+| 4.2 | Regression Algorithms | Linear & Polynomial Regression | 1.5 weeks | 10% |
+| 4.3 | Model Evaluation & Metrics | Accuracy, Precision, Recall, F1 | 2 weeks | 12% |
+
+### UNIT 5: Unsupervised Learning (3 Projects)
+
+| # | Title | Focus | Duration | Weight |
+|---|-------|-------|----------|--------|
+| 5.1 | Clustering Techniques | K-Means, Hierarchical Clustering | 1.5 weeks | 10% |
+| 5.2 | Clustering Comparison | Comparing clustering methods | 1.5 weeks | 10% |
+| 5.3 | PCA & Dimensionality Reduction | Principal Component Analysis | 2 weeks | 12% |
+
+### UNIT 6: Ethics & Applications (3 Projects)
+
+| # | Title | Focus | Duration | Weight |
+|---|-------|-------|----------|--------|
+| 6.1 | ML Ethics & Bias | Bias detection, fairness metrics | 1.5 weeks | 10% |
+| 6.2 | Model Deployment & Production | Saving models, basic APIs | 2 weeks | 12% |
+| 6.3 | Real-World ML Applications | Case studies, applications | 1.5 weeks | 10% |
+
+### ADVANCED PROJECTS (3 Projects - For High-Performers)
+
+| # | Title | Focus | Duration | Level |
+|---|-------|-------|----------|-------|
+| ADV-1 | End-to-End ML Pipeline with Production | Data engineering, feature engineering, deployment | 3 weeks | Advanced |
+| ADV-2 | Deep Learning for Image Classification | CNN, transfer learning, TensorFlow/Keras | 3 weeks | Advanced |
+| ADV-3 | Time Series Forecasting | ARIMA, LSTM, forecasting | 3 weeks | Advanced |
 
 ---
 

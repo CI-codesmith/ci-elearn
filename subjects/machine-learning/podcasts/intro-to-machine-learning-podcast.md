@@ -30,12 +30,34 @@ loading="lazy">
 
 Learners may listen to the episodes sequentially or selectively.
 
-1. Introduction to Machine Learning Conceptshttps://open.spotify.com/episode/6t5sC5yXY9OyKArTyKbCM3
-2. Learning from Data and Patternshttps://open.spotify.com/episode/3wg3toklZuOyBgmon4EaRA
-3. Understanding Unsupervised Learninghttps://open.spotify.com/episode/2HOoYvmb5NeXc4SayNNh3j
-4. Clustering and Structure Discoveryhttps://open.spotify.com/episode/25e9rZUonmVu0tAc6nnTnc
-5. Representation and Feature Learninghttps://open.spotify.com/episode/45jBx392ERQyfEXkAyVacC
-6. Limits of Rule-Based Systemshttps://open.spotify.com/episode/33WiQstCnGV4QZq9cesIMa
+### Unit I: Introduction to Machine Learning
+
+**Episode 3: Understanding Unsupervised Learning**
+
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/2HOoYvmb5NeXc4SayNNh3j?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+---
+
+### All Episodes
+
+1. Introduction to Machine Learning Concepts
+   https://open.spotify.com/episode/6t5sC5yXY9OyKArTyKbCM3
+
+2. Learning from Data and Patterns
+   https://open.spotify.com/episode/3wg3toklZuOyBgmon4EaRA
+
+3. Understanding Unsupervised Learning
+   https://open.spotify.com/episode/2HOoYvmb5NeXc4SayNNh3j
+
+4. Clustering and Structure Discovery
+   https://open.spotify.com/episode/25e9rZUonmVu0tAc6nnTnc
+
+5. Representation and Feature Learning
+   https://open.spotify.com/episode/45jBx392ERQyfEXkAyVacC
+
+6. Limits of Rule-Based Systems
+   https://open.spotify.com/episode/33WiQstCnGV4QZq9cesIMa
+
 7. Intuition Before Algorithms
    https://open.spotify.com/episode/3up8T6VDunWZVrMabyQhZH
 

@@ -22,12 +22,11 @@ By the end of this subject, learners will be able to:
 
 The subject is organised into the following components:
 
-- **Units**Unit-wise theory, lecture notes, and presentations
-- **Practicals**Hands-on exercises to implement and experiment with ML algorithms
-- **Microprojects**Small, focused projects connecting theory to applications
-- **Assessments**Weekly tests, class tests, prelims, and evaluation rubrics
-- **Podcasts & Talks**
-  Curated discussions and talks to build intuition and context
+- **[Units](./course-overview.md)** - Unit-wise theory, lecture notes, and presentations with embedded Gamma slides & podcasts
+- **[Practicals](./practicals/)** - Hands-on exercises to implement and experiment with ML algorithms
+- **[Microprojects](./microprojects/)** - 18 focused projects (75% course weight) connecting theory to applications
+- **[Assessments](./assessments/)** - Weekly tests, class tests, prelims, and evaluation rubrics
+- **[Podcasts & Resources](./COURSE_RESOURCES_REFERENCE.md)** - Curated Spotify podcast discussions and all resource links
 
 ---
 
@@ -50,3 +49,39 @@ This subject follows a structured, unit-wise academic design with emphasis on:
 
 Content is integrated selectively from curated teaching material to maintain
 clarity and academic rigour.
+
+---
+
+## 🚀 Quick Start
+
+**New to Machine Learning?** Start here:
+
+1. **[Course Overview](./course-overview.md)** - Introduction presentation & podcast
+2. **[Unit I: Introduction to ML](./units/unit-01-introduction-to-machine-learning.md)** - Fundamentals & Python basics
+3. **[Microproject 1.1](./microprojects/MICROPROJECT_1_1/)** - Your first hands-on project
+
+---
+
+## 📚 Key Resources
+
+| Resource | Link | Purpose |
+|----------|------|---------|
+| **Course Overview** | [View](./course-overview.md) | Intro presentation, podcast, units overview |
+| **All Units** | [Browse](./units/) | 5 MSBTE-aligned units with slides & podcasts |
+| **Microprojects** | [All 18 Projects](./microprojects/) | 75% of course weight - hands-on learning |
+| **Practicals** | [Lab Sessions](./practicals/) | Weekly implementation exercises |
+| **Assessments** | [Tests & Rubrics](./assessments/) | Class tests, prelims, evaluation criteria |
+| **Resources Reference** | [Master List](./COURSE_RESOURCES_REFERENCE.md) | All Gamma IDs, Spotify links, embeds |
+| **Study Notes** | [By Unit](./notes/) | Unit-wise detailed study materials |
+| **Podcasts** | [All Episodes](./COURSE_RESOURCES_REFERENCE.md#-spotify-podcast-episodes) | 7 curated episodes with IDs and links |
+
+---
+
+## 📊 Course Details
+
+- **Course Code:** 316316
+- **Semester:** 6 (MSBTE K-Scheme)
+- **Total Duration:** 12-14 weeks
+- **Microproject Weight:** 75% of assessment
+- **Units:** 5 (Introduction → Unsupervised Learning)
+- **Total Microprojects:** 18 (4-5 per unit)

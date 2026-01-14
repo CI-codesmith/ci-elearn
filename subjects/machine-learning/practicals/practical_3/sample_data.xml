@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+    <employee>
+        <id>1</id>
+        <name>Alice</name>
+        <age>28</age>
+        <department>Engineering</department>
+        <salary>75000</salary>
+    </employee>
+    <employee>
+        <id>2</id>
+        <name>Bob</name>
+        <age>34</age>
+        <department>Sales</department>
+        <salary>65000</salary>
+    </employee>
+    <employee>
+        <id>3</id>
+        <name>Charlie</name>
+        <age>29</age>
+        <department>Marketing</department>
+        <salary>60000</salary>
+    </employee>
+</employees>
