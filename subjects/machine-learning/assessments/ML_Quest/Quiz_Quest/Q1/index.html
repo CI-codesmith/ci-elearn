@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ml-masterclass-quiz.netlify.app/" />
+        <meta property="og:title" content="ML Masterclass Quiz" />
+        <meta property="og:description" content="Test your Machine Learning basics! Take the interactive ML Masterclass Quiz and share your feedback. Open to all branches." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80" />
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://ml-masterclass-quiz.netlify.app/" />
+        <meta name="twitter:title" content="ML Masterclass Quiz" />
+        <meta name="twitter:description" content="Test your Machine Learning basics! Take the interactive ML Masterclass Quiz and share your feedback. Open to all branches." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Masterclass: Taste-Taker Feedback</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { 
+            background-color: #020617; 
+            color: #e2e8f0; 
+            font-family: 'Inter', sans-serif; 
+        }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        /* Shake animation for feedback */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+        .animate-shake { animation: shake 0.3s linear; }
+
+        input:focus { outline: none; border-color: #3b82f6; }
+        .perspective-1000 { perspective: 1000px; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script>
+        (function() {
+            const STORAGE_KEY = 'ml_quiz_scores';
+            window.DB_API = {
+                saveScore: async (name, score) => {
+                    const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                    existing.push({ name, score, timestamp: Date.now() });
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+                    return Promise.resolve();
+                },
+                getLeaderboard: (callback) => {
+                    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                    data.sort((a, b) => b.score - a.score);
+                    callback(data.slice(0, 10));
+                }
+            };
+        })();
+    </script>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // --- CUSTOM ICONS (Replacing Lucide to fix crash) ---
+        const Icons = {
+            Brain: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>,
+            Trophy: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>,
+            ArrowRight: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>,
+            Network: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>,
+            Target: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>,
+            Zap: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+            Grid: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>,
+            Activity: () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        };
+
+        const Button = ({ onClick, children, variant = "primary", className = "", disabled = false }) => {
+            const base = "px-6 py-3 rounded-xl font-bold transition-all duration-200 flex items-center justify-center gap-2 transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed";
+            const variants = {
+                primary: "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg shadow-blue-500/25",
+                success: "bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-500/25",
+                danger: "bg-rose-600 hover:bg-rose-500 text-white",
+                outline: "border-2 border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white bg-transparent"
+            };
+            return <button onClick={onClick} disabled={disabled} className={`${base} ${variants[variant]} ${className}`}>{children}</button>;
+        };
+
+        const Card = ({ children, className = "" }) => (
+            <div className={`glass rounded-2xl p-6 md:p-8 shadow-2xl ${className}`}>{children}</div>
+        );
+
+        const ProgressBar = ({ current, total }) => (
+            <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden mt-2">
+                <div className="h-full bg-blue-500 transition-all duration-500" style={{ width: `${(current / total) * 100}%` }}></div>
+            </div>
+        );
+
+        // --- LEVEL 1: TRIVIA ---
+        const LevelTrivia = ({ onComplete }) => {
+            const questions = [
+                { q: "What is the 'Target' variable usually denoted as?", options: ["X", "y", "theta", "alpha"], a: 1 },
+                { q: "Which is a Supervised Learning task?", options: ["Clustering", "Spam Detection", "Dimensionality Reduction", "Policy Learning"], a: 1 },
+                { q: "What does 'training' a model actually mean?", options: ["Writing code", "Finding best weights", "Cleaning data", "Deploying to cloud"], a: 1 },
+                { q: "Overfitting happens when the model learns...", options: ["The general pattern", "The noise/specifics", "Nothing at all", "Too slowly"], a: 1 },
+                { q: "Which algorithm uses 'Support Vectors'?", options: ["Random Forest", "K-Means", "SVM", "Neural Network"], a: 2 },
+                { q: "In a Neural Network, what connects layers?", options: ["Weights", "Cables", "SQL", "Pandas"], a: 0 },
+                { q: "Unsupervised learning works with...", options: ["Labeled data", "Unlabeled data", "Rewards", "Time series"], a: 1 },
+                { q: "What metric is used for Regression?", options: ["Accuracy", "F1 Score", "Mean Squared Error", "Precision"], a: 2 },
+                { q: "Pandas is primarily used for...", options: ["Deep Learning", "Data Manipulation", "Web scraping", "Game Dev"], a: 1 },
+                { q: "What is a 'Hyperparameter'?", options: ["A learned parameter", "A human setting", "The final accuracy", "The dataset size"], a: 1 }
+            ];
+
+            const [idx, setIdx] = useState(0);
+            const [score, setScore] = useState(0);
+            const [locked, setLocked] = useState(false);
+            const [selected, setSelected] = useState(null);
+
+            const handleAns = (optIdx) => {
+                if (locked) return;
+                setLocked(true);
+                setSelected(optIdx);
+                
+                const correct = optIdx === questions[idx].a;
+                if (correct) setScore(s => s + 10);
+
+                setTimeout(() => {
+                    if (idx < questions.length - 1) {
+                        setIdx(i => i + 1);
+                        setLocked(false);
+                        setSelected(null);
+                    } else {
+                        onComplete(score + (correct ? 10 : 0));
+                    }
+                }, 1000);
+            };
+
+            return (
+                <div className="w-full max-w-2xl mx-auto space-y-6">
+                    <div className="flex justify-between text-slate-400 font-mono text-sm">
+                        <span>Question {idx + 1}/10</span>
+                        <span>XP: {score}</span>
+                    </div>
+                    <ProgressBar current={idx} total={10} />
+                    
+                    <Card className="min-h-[300px] flex flex-col justify-center text-center">
+                        <h3 className="text-2xl font-bold text-white mb-8 leading-snug">{questions[idx].q}</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {questions[idx].options.map((opt, i) => {
+                                let style = "bg-slate-800/50 hover:bg-slate-700 border-slate-700 text-slate-300";
+                                if (locked) {
+                                    if (i === questions[idx].a) style = "bg-emerald-500/20 border-emerald-500 text-white";
+                                    else if (i === selected) style = "bg-rose-500/20 border-rose-500 text-white opacity-50";
+                                    else style = "bg-slate-800/20 border-slate-800 text-slate-600";
+                                }
+                                return (
+                                    <button 
+                                        key={i} 
+                                        onClick={() => handleAns(i)} 
+                                        disabled={locked} 
+                                        className={`p-4 rounded-xl border text-left font-medium transition-all ${style}`}
+                                    >
+                                        {opt}
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    </Card>
+                </div>
+            );
+        };
+
+        // --- LEVEL 2: SORTER ---
+        const LevelSorter = ({ onComplete }) => {
+            const items = [
+                { t: "Stock Price Prediction", cat: "S", hint: "Uses past prices (labels)" },
+                { t: "Customer Segmentation", cat: "U", hint: "Grouping similar people" },
+                { t: "Chess Engine", cat: "R", hint: "Learns from winning/losing" },
+                { t: "Spam Filter", cat: "S", hint: "Marked as Spam/Not Spam" },
+                { t: "Topic Modeling", cat: "U", hint: "Finding themes in text" },
+                { t: "Face Recognition", cat: "S", hint: "Matches name to face" },
+                { t: "Robot Walking", cat: "R", hint: "Physical trial and error" },
+                { t: "Medical Diagnosis", cat: "S", hint: "Healthy vs Sick labels" },
+                { t: "Anomaly Detection", cat: "U", hint: "Finding weird data points" },
+                { t: "Self-Driving Car", cat: "R", hint: "Navigating environment" }
+            ];
+
+            const [idx, setIdx] = useState(0);
+            const [score, setScore] = useState(0);
+            const [feedback, setFeedback] = useState(null);
+
+            const handleSort = (cat) => {
+                if (feedback) return;
+                const correct = items[idx].cat === cat;
+                setFeedback(correct ? 'correct' : 'wrong');
+                if (correct) setScore(s => s + 10);
+
+                setTimeout(() => {
+                    setFeedback(null);
+                    if (idx < items.length - 1) setIdx(i => i + 1);
+                    else onComplete(score + (correct ? 10 : 0));
+                }, 800);
+            };
+
+            return (
+                <div className="w-full max-w-2xl mx-auto space-y-8 text-center">
+                    <div className="flex justify-between text-slate-400 font-mono text-sm">
+                        <span>Item {idx + 1}/10</span>
+                        <span>XP: {score}</span>
+                    </div>
+
+                    <div className="relative h-48 w-full perspective-1000">
+                        <div className={`absolute inset-0 bg-gradient-to-br from-indigo-900 to-slate-900 rounded-2xl flex flex-col items-center justify-center p-6 border border-slate-700 shadow-2xl transition-all duration-500 ${feedback === 'correct' ? 'scale-0 opacity-0 translate-y-20' : feedback === 'wrong' ? 'border-red-500 animate-shake' : ''}`}>
+                            <span className="text-sm text-slate-400 uppercase tracking-widest mb-2">Classify This</span>
+                            <span className="text-3xl font-black text-white mb-2">{items[idx].t}</span>
+                            <span className="text-xs text-slate-500 font-mono">{items[idx].hint}</span>
+                        </div>
+                        {feedback && (
+                            <div className={`absolute inset-0 flex items-center justify-center font-black text-4xl ${feedback === 'correct' ? 'text-emerald-500' : 'text-rose-500'}`}>
+                                {feedback === 'correct' ? 'NICE!' : 'OOPS!'}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-3">
+                        <button onClick={() => handleSort('S')} className="p-4 bg-blue-900/20 border border-blue-500/30 rounded-xl hover:bg-blue-900/40 hover:border-blue-400 transition-all group">
+                            <div className="mb-2 text-blue-400 group-hover:scale-110 transition-transform flex justify-center"><Icons.Target /></div>
+                            <div className="font-bold text-blue-100 text-sm md:text-base">Supervised</div>
+                        </button>
+                        <button onClick={() => handleSort('U')} className="p-4 bg-purple-900/20 border border-purple-500/30 rounded-xl hover:bg-purple-900/40 hover:border-purple-400 transition-all group">
+                            <div className="mb-2 text-purple-400 group-hover:scale-110 transition-transform flex justify-center"><Icons.Network /></div>
+                            <div className="font-bold text-purple-100 text-sm md:text-base">Unsupervised</div>
+                        </button>
+                        <button onClick={() => handleSort('R')} className="p-4 bg-orange-900/20 border border-orange-500/30 rounded-xl hover:bg-orange-900/40 hover:border-orange-400 transition-all group">
+                            <div className="mb-2 text-orange-400 group-hover:scale-110 transition-transform flex justify-center"><Icons.Zap /></div>
+                            <div className="font-bold text-orange-100 text-sm md:text-base">Reinforcement</div>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        // --- LEVEL 3: TERM BUILDER ---
+        const LevelBuilder = ({ onComplete }) => {
+            const terms = [
+                { w: "DATA", clue: "Raw facts and figures" },
+                { w: "MODEL", clue: "The output of training" },
+                { w: "BIAS", clue: "Prejudice in the algorithm" },
+                { w: "EPOCH", clue: "One full pass through data" },
+                { w: "LABEL", clue: "The answer key for data" },
+                { w: "NODE", clue: "A neuron in a network" },
+                { w: "LOSS", clue: "The error value to minimize" },
+                { w: "DEEP", clue: "___ Learning (Many layers)" },
+                { w: "TREE", clue: "Decision ___ (Flowchart model)" },
+                { w: "TEST", clue: "Dataset used for final evaluation" }
+            ];
+
+            const [idx, setIdx] = useState(0);
+            const [input, setInput] = useState("");
+            const [score, setScore] = useState(0);
+            const [shaking, setShaking] = useState(false);
+
+            const handleType = (char) => {
+                if (input.length < terms[idx].w.length) setInput(prev => prev + char);
+            };
+
+            const handleBackspace = () => setInput(prev => prev.slice(0, -1));
+
+            const check = () => {
+                if (input === terms[idx].w) {
+                    setScore(s => s + 10);
+                }
+                setInput("");
+                if (idx < terms.length - 1) setIdx(i => i + 1);
+                else onComplete(score + (input === terms[idx].w ? 10 : 0));
+            };
+
+            const currentTerm = terms[idx];
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+            return (
+                <div className="w-full max-w-xl mx-auto space-y-8">
+                    <div className="flex justify-between text-slate-400 font-mono text-sm">
+                        <span>Term {idx + 1}/10</span>
+                        <span>XP: {score}</span>
+                    </div>
+
+                    <Card className="text-center py-8">
+                        <div className="text-blue-400 font-bold uppercase tracking-widest text-xs mb-4">Decode the Term</div>
+                        <p className="text-slate-300 text-lg mb-8 italic">"{currentTerm.clue}"</p>
+                        
+                        <div className={`flex justify-center gap-2 mb-8 ${shaking ? 'animate-bounce text-red-500' : ''}`}>
+                            {currentTerm.w.split("").map((_, i) => (
+                                <div 
+                                    key={i} 
+                                    className={`w-12 h-14 rounded-lg border-2 flex items-center justify-center text-2xl font-black ${input[i] ? 'border-blue-500 bg-blue-900/20 text-white' : 'border-slate-700 bg-slate-800 text-slate-600'}`}
+                                >
+                                    {input[i] || ""}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="flex flex-wrap justify-center gap-1 max-w-sm mx-auto">
+                            {chars.map(char => (
+                                <button 
+                                    key={char} 
+                                    onClick={() => handleType(char)} 
+                                    className="w-8 h-10 bg-slate-700 hover:bg-slate-600 rounded text-sm font-bold text-slate-200"
+                                >
+                                    {char}
+                                </button>
+                            ))}
+                            <button 
+                                onClick={handleBackspace} 
+                                className="w-16 h-10 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded text-sm text-red-400 font-bold"
+                            >
+                                DEL
+                            </button>
+                            <button 
+                                onClick={check} 
+                                className="w-full mt-4 bg-emerald-600 hover:bg-emerald-500 h-12 rounded-lg font-bold text-white shadow-lg shadow-emerald-900/20"
+                            >
+                                SUBMIT
+                            </button>
+                        </div>
+                    </Card>
+                </div>
+            );
+        };
+
+        // --- MAIN APP ---
+        const App = () => {
+            const [stage, setStage] = useState('intro'); // intro, trivia, sorter, builder, finish
+            const [totalScore, setTotalScore] = useState(0);
+            const [leaderboard, setLeaderboard] = useState([]);
+            const [name, setName] = useState("");
+            const [isSubmitting, setIsSubmitting] = useState(false);
+
+            const handleStageDone = (points) => {
+                setTotalScore(s => s + points);
+                if (stage === 'trivia') setStage('sorter');
+                else if (stage === 'sorter') setStage('builder');
+                else if (stage === 'builder') setStage('finish');
+            };
+
+            const submitScore = async () => {
+                if (!name.trim()) return;
+                setIsSubmitting(true);
+                await window.DB_API.saveScore(name, totalScore);
+                
+                window.DB_API.getLeaderboard((data) => {
+                    setLeaderboard(data);
+                    setIsSubmitting(false);
+                });
+            };
+
+            return (
+                <div className="min-h-screen flex flex-col items-center py-10 px-4">
+                    {/* Header */}
+                    <div className="mb-10 text-center">
+                        <div className="flex items-center justify-center gap-3 mb-2">
+                            <Icons.Brain />
+                            <h1 className="text-3xl font-black tracking-tight text-white">
+                                ML <span className="text-blue-500">Masterclass</span>
+                            </h1>
+                        </div>
+                        {stage !== 'intro' && stage !== 'finish' && (
+                            <div className="inline-block px-4 py-1 rounded-full bg-slate-800 border border-slate-700 text-emerald-400 font-mono font-bold">
+                                Total XP: {totalScore}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Stages */}
+                    {stage === 'intro' && (
+                        <div className="max-w-xl text-center space-y-8 animate-float">
+                            <Card className="border-t-4 border-t-blue-500">
+                                <h2 className="text-2xl font-bold text-white mb-4">Welcome, Engineer.</h2>
+                                <p className="text-slate-400 mb-6">
+                                    Complete 3 modules to certify your Machine Learning knowledge.
+                                </p>
+                                <div className="grid grid-cols-1 gap-4 mb-8 text-left">
+                                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                        <div className="text-emerald-400"><Icons.Activity /></div>
+                                        <div>
+                                            <div className="font-bold text-slate-200">Module 1: Concepts</div>
+                                            <div className="text-xs text-slate-500">10 Quick-Fire Questions</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                        <div className="text-blue-400"><Icons.Target /></div>
+                                        <div>
+                                            <div className="font-bold text-slate-200">Module 2: Classification</div>
+                                            <div className="text-xs text-slate-500">10 Sorting Challenges</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
+                                        <div className="text-purple-400"><Icons.Grid /></div>
+                                        <div>
+                                            <div className="font-bold text-slate-200">Module 3: Terminology</div>
+                                            <div className="text-xs text-slate-500">10 Word Decoders</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <Button onClick={() => setStage('trivia')} className="w-full py-4 text-lg">
+                                    Start Certification <div className="ml-2"><Icons.ArrowRight /></div>
+                                </Button>
+                            </Card>
+                        </div>
+                    )}
+
+                    {stage === 'trivia' && <LevelTrivia onComplete={handleStageDone} />}
+                    {stage === 'sorter' && <LevelSorter onComplete={handleStageDone} />}
+                    {stage === 'builder' && <LevelBuilder onComplete={handleStageDone} />}
+
+                    {stage === 'finish' && (
+                        <div className="max-w-4xl w-full space-y-6 animate-float">
+                            <Card className="text-center border-t-4 border-t-emerald-500">
+                                <div className="mx-auto mb-4 text-yellow-400 flex justify-center"><Icons.Trophy /></div>
+                                <h2 className="text-3xl font-black text-white">🎉 Certified!</h2>
+                                <div className="text-5xl font-black text-emerald-400 my-4">
+                                    {totalScore} <span className="text-lg text-slate-500">XP</span>
+                                </div>
+                            </Card>
+
+                            <Card className="border-t-4 border-t-blue-500">
+                                <h3 className="text-xl font-bold text-white mb-2">📋 Share Your Feedback</h3>
+                                <p className="text-slate-400 text-sm mb-4">
+                                    Help us improve the ML course! Your insights are valuable. Complete the form below to submit your feedback.
+                                </p>
+                                    <div className="bg-slate-800/30 rounded-lg overflow-hidden border border-slate-700">
+                                        <iframe 
+                                            src="https://docs.google.com/forms/d/e/1FAIpQLScdactjHfnpQ7goJlv8W6ZDXr_pDVI4YdoWy7C-Otz3Nqjy5A/viewform?embedded=true" 
+                                            width="640" 
+                                            height="1727" 
+                                            frameborder="0" 
+                                            marginheight="0" 
+                                            marginwidth="0"
+                                        >
+                                            Loading…
+                                        </iframe>
+                                </div>
+                            </Card>
+
+                            <Card className="bg-slate-800/50 text-center border-l-4 border-l-purple-500">
+                                <p className="text-slate-300 text-sm mb-3">
+                                    💡 <strong>Pro Tip:</strong> Bookmark this page to retake the quiz and improve your score!
+                                </p>
+                                <Button 
+                                    onClick={() => window.location.href = window.location.href} 
+                                    variant="outline" 
+                                    className="w-full"
+                                >
+                                    Retake Quiz
+                                </Button>
+                            </Card>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
