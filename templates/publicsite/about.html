@@ -1,0 +1,252 @@
+{% extends 'publicsite/base_public.html' %}
+
+{% block title %}About Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: #2E2E2E;
+        color: #F7F6F3;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        border-bottom: 3px solid #B08D57;
+    }
+
+    .page-header h1 {
+        color: #F7F6F3;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-family: 'Merriweather', serif;
+    }
+
+    .page-header .tagline {
+        color: #B08D57;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .page-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+    }
+
+    .section {
+        margin-bottom: 4rem;
+    }
+
+    .section h2 {
+        color: #2E2E2E;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #B08D57;
+        padding-bottom: 0.75rem;
+        font-family: 'Merriweather', serif;
+    }
+
+    .section p {
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .philosophy-box {
+        background-color: #F7F6F3;
+        border-left: 4px solid #7A1F2B;
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 6px;
+    }
+
+    .philosophy-box p {
+        font-size: 1.15rem;
+        color: #2E2E2E;
+        font-style: italic;
+        margin: 0;
+    }
+
+    .divisions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .division-item {
+        background: #FFFFFF;
+        padding: 2rem;
+        border-radius: 8px;
+        border-left: 4px solid #7A1F2B;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .division-item h3 {
+        color: #7A1F2B;
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+        font-family: 'Merriweather', serif;
+    }
+
+    .division-item p {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .leadership-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .leader-card {
+        background: #FFFFFF;
+        padding: 2rem;
+        border-radius: 8px;
+        border-top: 3px solid #7A1F2B;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        text-align: center;
+    }
+
+    .leader-card h3 {
+        color: #2E2E2E;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        font-family: 'Merriweather', serif;
+    }
+
+    .leader-title {
+        color: #B08D57;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .leader-bio {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+</style>
+
+<section class="page-header">
+    <h1>About Chatake Innoworks</h1>
+    <p class="tagline">Engineering Ideas. Empowering Innovation.</p>
+</section>
+
+<div class="page-content">
+    <section class="section">
+        <h2>Who We Are</h2>
+        <p>
+            Chatake Innoworks Pvt. Ltd. is an innovative AI–IT research and development startup dedicated to building 
+            intelligent systems through the seamless integration of Artificial Intelligence, robotics, and automation technologies. 
+            We are committed to transforming theoretical knowledge into practical, deployment-ready solutions that address 
+            real-world challenges across industries.
+        </p>
+        <p>
+            Our family-rooted organization bridges the critical gap between classroom education and corporate innovation, 
+            fostering an ecosystem where academic research meets industrial application. We believe in nurturing talent and 
+            creating pathways for continuous learning and technological advancement.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Core Philosophy</h2>
+        <div class="philosophy-box">
+            <p>"AI begins at home."</p>
+        </div>
+        <p>
+            This guiding principle reflects our commitment to democratizing artificial intelligence and making it accessible, 
+            understandable, and applicable from the grassroots level. We bridge the gap between classroom education and 
+            corporate innovation by creating meaningful connections between theoretical frameworks and practical implementations.
+        </p>
+    </section>
+
+    <section class="section">
+        <h2>Our Approach</h2>
+        <p>
+            We emphasize end-to-end system integration encompassing sensor data acquisition, embedded systems development, 
+            and deployment-ready software platforms that deliver measurable results. Our methodology integrates:
+        </p>
+        <div class="divisions-grid">
+            <div class="division-item">
+                <h3>Data Acquisition</h3>
+                <p>Sensor networks and IoT devices for real-time data collection</p>
+            </div>
+            <div class="division-item">
+                <h3>Edge Computing</h3>
+                <p>Embedded systems and intelligent device management</p>
+            </div>
+            <div class="division-item">
+                <h3>AI Intelligence</h3>
+                <p>Machine learning models and advanced algorithms</p>
+            </div>
+            <div class="division-item">
+                <h3>Platform Deployment</h3>
+                <p>Scalable cloud infrastructure and application hosting</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Strategic Divisions</h2>
+        <p>Our organization operates through four specialized divisions, each contributing unique expertise to our comprehensive AI–IT ecosystem:</p>
+        <div class="divisions-grid">
+            <div class="division-item">
+                <h3>MindforgeAI</h3>
+                <p>The R&D engine driving innovation forward. Advanced AI research, Deep Learning applications, and Robotics & Automation integration.</p>
+            </div>
+            <div class="division-item">
+                <h3>CodeSmith Systems</h3>
+                <p>The digital backbone providing robust technological infrastructure. Enterprise Software development and IT Infrastructure management.</p>
+            </div>
+            <div class="division-item">
+                <h3>Chatake GreenWorks</h3>
+                <p>Engineering Intelligence for a Sustainable Planet. AI-driven solutions for agriculture, precision crop monitoring, and the AgriVerse platform.</p>
+            </div>
+            <div class="division-item">
+                <h3>EduSphere</h3>
+                <p>Merging AI education with real-world application. Translating complex system workflows into accessible Faculty Development Programs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Leadership Team</h2>
+        <div class="leadership-grid">
+            <div class="leader-card">
+                <h3>Shivadas B. Chatake</h3>
+                <p class="leader-title">Chairman & President</p>
+                <p class="leader-bio">
+                    With decades of entrepreneurial experience and a deep commitment to technological innovation, Mr. Shivadas B. Chatake 
+                    provides strategic direction and visionary leadership. His philosophy of integrating family values with corporate excellence 
+                    shapes the organization's culture and approach to sustainable growth.
+                </p>
+            </div>
+            <div class="leader-card">
+                <h3>Akash S. Chatake</h3>
+                <p class="leader-title">Managing Director</p>
+                <p class="leader-bio">
+                    As Managing Director, Mr. Akash S. Chatake brings technical expertise and operational excellence. His background in 
+                    Artificial Intelligence and systems integration drives research initiatives and ensures solutions remain at the cutting 
+                    edge of technological innovation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Get in Touch</h2>
+        <p>
+            Whether you're an academic institution seeking to enhance your technology curriculum, an industry partner looking 
+            for innovative AI solutions, or a researcher interested in collaboration, we welcome the opportunity to connect.
+        </p>
+        <p>
+            <strong>Email:</strong> <a href="mailto:admin@chatakeinnoworks.com">admin@chatakeinnoworks.com</a><br>
+            <strong>Phone:</strong> <a href="tel:+918275157996">+91 827-515-7996</a><br>
+            <strong>Address:</strong> Solapur, Maharashtra, India<br>
+            <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/company/chatakeinnoworks/" target="_blank">Chatake Innoworks Pvt. Ltd.</a>
+        </p>
+    </section>
+</div>
+{% endblock %}

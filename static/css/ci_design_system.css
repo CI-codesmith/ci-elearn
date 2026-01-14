@@ -1,0 +1,752 @@
+/* ============================================================================
+   CHATAKE INNOWORKS — UNIFIED DESIGN SYSTEM CSS
+   
+   This is the single source of truth for all UI styling across:
+   - Public website (base_public.html)
+   - Internal portal (portal/dashboard_base.html)
+   
+   Colours:
+   - Primary: #2E2E2E (Charcoal / Near-black text)
+   - Accent: #7A1F2B (Maroon)
+   - Accent Alt: #B08D57 (Bronze/Gold)
+   - Background: #F7F6F3 (Off-white/Cream)
+   - White: #FFFFFF
+   
+   Typography:
+   - Headings: Merriweather (serif)
+   - Body: Inter (sans-serif)
+   
+   ============================================================================ */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #F7F6F3;
+    color: #2E2E2E;
+    line-height: 1.6;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ============================================================================
+   TYPOGRAPHY
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #2E2E2E;
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.1rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+a {
+    color: #7A1F2B;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #B08D57;
+}
+
+/* ============================================================================
+   HEADER (Shared across public + portal)
+   ============================================================================ */
+
+.institutional-header {
+    background-color: #2E2E2E;
+    border-bottom: 3px solid #7A1F2B;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.logo-text {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #F7F6F3;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+}
+
+.logo-tagline {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #B08D57;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.logo-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.user-name {
+    color: #F7F6F3;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.user-role {
+    color: #B08D57;
+    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+}
+
+.header-link {
+    color: #F7F6F3;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.header-link:hover {
+    background-color: #7A1F2B;
+    color: #F7F6F3;
+}
+
+.logout-link {
+    color: #B08D57;
+}
+
+.logout-link:hover {
+    background-color: rgba(122, 31, 43, 0.2);
+}
+
+/* ============================================================================
+   FOOTER (Shared across public + portal)
+   ============================================================================ */
+
+.institutional-footer {
+    background-color: #2E2E2E;
+    color: #F7F6F3;
+    padding: 3rem 0 1.5rem;
+    margin-top: 3rem;
+    border-top: 3px solid #7A1F2B;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-family: 'Merriweather', serif;
+    color: #F7F6F3;
+}
+
+.footer-section h4 {
+    margin: 0 0 1rem;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    color: #B08D57;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.tagline {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #B08D57;
+    font-family: 'Inter', sans-serif;
+}
+
+.division-list,
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.division-list li,
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: #F7F6F3;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #B08D57;
+}
+
+.footer-section p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(122, 31, 43, 0.3);
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #B08D57;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* ============================================================================
+   NAVIGATION SIDEBAR (Portal only)
+   ============================================================================ */
+
+.sidebar {
+    background-color: #2E2E2E;
+    width: 250px;
+    padding: 2rem 0;
+    border-right: 1px solid rgba(122, 31, 43, 0.2);
+    position: fixed;
+    left: 0;
+    top: 60px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 0;
+}
+
+.sidebar .section-title {
+    color: #B08D57;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.sidebar a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #F7F6F3;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.sidebar a:hover {
+    background-color: #7A1F2B;
+    color: #F7F6F3;
+    padding-left: 2rem;
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-primary {
+    background-color: #7A1F2B;
+    color: #F7F6F3;
+}
+
+.btn-primary:hover {
+    background-color: #5a1620;
+    color: #FFFFFF;
+}
+
+.btn-secondary {
+    background-color: #B08D57;
+    color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+    background-color: #9a7545;
+    color: #FFFFFF;
+}
+
+.btn-tertiary {
+    background-color: #F7F6F3;
+    color: #2E2E2E;
+    border: 2px solid #7A1F2B;
+}
+
+.btn-tertiary:hover {
+    background-color: #E8E6E1;
+    color: #2E2E2E;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* ============================================================================
+   CARDS
+   ============================================================================ */
+
+.card {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-top: 4px solid #7A1F2B;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #7A1F2B;
+}
+
+.card-content {
+    font-size: 0.9rem;
+    color: #2E2E2E;
+}
+
+.card-stat {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #7A1F2B;
+    margin-bottom: 0.5rem;
+}
+
+.card-label {
+    font-size: 0.8rem;
+    color: #B08D57;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* ============================================================================
+   TABLES
+   ============================================================================ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+    background-color: #2E2E2E;
+    color: #F7F6F3;
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-bottom: 2px solid #7A1F2B;
+}
+
+td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #EEEBE5;
+}
+
+tbody tr:hover {
+    background-color: #FAF9F7;
+}
+
+/* ============================================================================
+   BADGES
+   ============================================================================ */
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-primary {
+    background-color: #7A1F2B;
+    color: #FFFFFF;
+}
+
+.badge-success {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+}
+
+.badge-warning {
+    background-color: #FF9800;
+    color: #FFFFFF;
+}
+
+.badge-danger {
+    background-color: #F44336;
+    color: #FFFFFF;
+}
+
+/* ============================================================================
+   PROGRESS BARS
+   ============================================================================ */
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #EEEBE5;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #7A1F2B;
+    transition: width 0.3s ease;
+}
+
+/* ============================================================================
+   LAYOUT GRID
+   ============================================================================ */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* ============================================================================
+   HERO SECTION
+   ============================================================================ */
+
+.hero {
+    background: linear-gradient(135deg, #2E2E2E 0%, #1a1a1a 100%);
+    color: #F7F6F3;
+    padding: 4rem 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid #7A1F2B;
+}
+
+.hero h1 {
+    color: #F7F6F3;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #B08D57;
+}
+
+/* ============================================================================
+   FORMS
+   ============================================================================ */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #EEEBE5;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #2E2E2E;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #7A1F2B;
+    box-shadow: 0 0 0 3px rgba(122, 31, 43, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #2E2E2E;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .header-right {
+        gap: 1rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .logo-text {
+        font-size: 1.25rem;
+    }
+
+    .user-info {
+        align-items: flex-start;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        border-right: none;
+        border-bottom: 1px solid rgba(122, 31, 43, 0.2);
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        padding: 2rem 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-section {
+        padding: 0 1rem;
+    }
+
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mt-1 {
+    margin-top: 0.5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 1rem;
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

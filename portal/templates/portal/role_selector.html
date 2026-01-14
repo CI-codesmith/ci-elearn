@@ -1,27 +1,159 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block title %}Select Your Role - Chatake Innoworks CI-Platform{% endblock %}
+
 {% block content %}
-  <h2>Select Your Role</h2>
-  {% if roles|length == 1 %}
-    <script>window.location.href = '{{ roles.0.redirect_url }}';</script>
-  {% else %}
-    {% if roles %}
-      <div class="role-cards">
-        {% for role in roles %}
-          <div class="role-card">
-            <form method="post" action="">
-              {% csrf_token %}
-              <input type="hidden" name="role" value="{{ role.name }}">
-              <button type="submit">{{ role.name|title }}</button>
-            </form>
-            <p>{{ role.description }}</p>
-          </div>
-        {% endfor %}
-      </div>
+<div style="padding: 2rem 0;">
+    <header style="margin-bottom: 2rem; text-align: center;">
+        <h2 style="color: var(--primary-color); margin-bottom: 0.5rem;">Select Your Role</h2>
+        <p class="text-muted" style="font-size: 1rem;">Choose a role to access your personalized dashboard and features.</p>
+    </header>
+
+    {% if roles|length == 1 %}
+        <script>window.location.href = '{{ roles.0.redirect_url }}';</script>
     {% else %}
-      <div class="empty-state">
-        <p>No roles assigned. Please contact administrator.</p>
-      </div>
+        {% if roles %}
+            <div class="role-selector-grid">
+                {% for role in roles %}
+                    <div class="role-tile">
+                        <div class="role-tile-icon">
+                            {% if role.name == 'Student' %}
+                                <span style="background-color: #7A1F2B; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">S</span>
+                            {% elif role.name == 'Teacher' %}
+                                <span style="background-color: #2E2E2E; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">T</span>
+                            {% elif role.name == 'Intern' %}
+                                <span style="background-color: #B08D57; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">I</span>
+                            {% elif role.name == 'Project Lead' %}
+                                <span style="background-color: #333; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px;">PL</span>
+                            {% elif role.name == 'Admin' %}
+                                <span style="background-color: #555; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">A</span>
+                            {% else %}
+                                <span style="background-color: #777; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px;">?</span>
+                            {% endif %}
+                        </div>
+                        <h3>{{ role.name|title }}</h3>
+                        <p class="role-description">
+                            {% if role.description %}
+                                {{ role.description }}
+                            {% else %}
+                                Access {{ role.name|title }} portal and resources.
+                            {% endif %}
+                        </p>
+                        <form method="post" action="" style="margin-top: 1.5rem;">
+                            {% csrf_token %}
+                            <input type="hidden" name="role" value="{{ role.name }}">
+                            <button type="submit" class="role-button">Enter Dashboard</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p><strong>No Roles Assigned</strong></p>
+                <p>You don't have any roles yet. Please contact your administrator for role assignment.</p>
+            </div>
+        {% endif %}
     {% endif %}
-  {% endif %}
+</div>
+
+<style>
+    .role-selector-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    .role-tile {
+        background: white;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .role-tile::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background-color: var(--primary-color);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    .role-tile:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 4px 12px rgba(122, 31, 43, 0.15);
+    }
+
+    .role-tile:hover::before {
+        transform: scaleX(1);
+    }
+
+    .role-tile-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .role-tile h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin: 1rem 0 0.5rem 0;
+        font-weight: 600;
+    }
+
+    .role-description {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0.5rem 0 0 0;
+    }
+
+    .role-button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .role-button:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(122, 31, 43, 0.2);
+    }
+
+    .role-button:active {
+        transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+        .role-selector-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .role-tile {
+            padding: 1.5rem;
+        }
+
+        .role-tile-icon {
+            font-size: 2.5rem;
+        }
+    }
+</style>
 {% endblock %}
+

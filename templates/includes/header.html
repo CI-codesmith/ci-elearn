@@ -1,0 +1,148 @@
+<header class="institutional-header">
+    <div class="header-container">
+        <div class="header-left">
+            <div class="logo-section">
+                {% if user.is_authenticated %}
+                    <h2 class="logo-text">Chatake Innoworks</h2>
+                    <p class="logo-tagline">Learning & Development Platform</p>
+                {% else %}
+                    <a href="/" class="logo-link">
+                        <h2 class="logo-text">Chatake Innoworks</h2>
+                        <p class="logo-tagline">Learning & Development Platform</p>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="header-right">
+            {% if user.is_authenticated %}
+                <div class="user-info">
+                    <span class="user-name">{{ user.get_full_name|default:user.username }}</span>
+                    {% if user.userprofile %}
+                        <span class="user-role">{{ user.userprofile.get_roles_display }}</span>
+                    {% endif %}
+                </div>
+                <a href="{% url 'admin:logout' %}" class="header-link logout-link">Logout</a>
+            {% else %}
+                <a href="{% url 'admin:login' %}" class="header-link">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<style>
+    .institutional-header {
+        background-color: #2E2E2E;
+        border-bottom: 3px solid #7A1F2B;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.5rem;
+    }
+
+    .logo-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .logo-text {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #F7F6F3;
+        font-family: 'Merriweather', serif;
+        font-weight: 700;
+    }
+
+    .logo-tagline {
+        margin: 0;
+        font-size: 0.75rem;
+        color: #B08D57;
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.25rem;
+    }
+
+    .user-name {
+        color: #F7F6F3;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .user-role {
+        color: #B08D57;
+        font-size: 0.75rem;
+        font-family: 'Inter', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .header-link {
+        color: #F7F6F3;
+        text-decoration: none;
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .header-link:hover {
+        background-color: #7A1F2B;
+        color: #F7F6F3;
+    }
+
+    .logout-link {
+        color: #B08D57;
+    }
+
+    .logout-link:hover {
+        background-color: rgba(122, 31, 43, 0.2);
+    }
+
+    @media (max-width: 768px) {
+        .header-container {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .header-right {
+            gap: 1rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+        }
+
+        .user-info {
+            align-items: flex-start;
+        }
+    }
+</style>

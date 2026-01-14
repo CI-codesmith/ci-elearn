@@ -1,2 +1,195 @@
-{% extends 'portal/dashboard_base.html' %}
-{% block content %}{{ block.super }}{% endblock %}
+{% extends "portal/dashboard_base.html" %}
+
+{% block title %}Internship Dashboard - Chatake Innoworks CI-Platform{% endblock %}
+
+{% block dashboard_content %}
+
+<!-- Internship Progress Cards -->
+<div class="overview-cards">
+    <div class="overview-card">
+        <h4>🎯 Active Internships</h4>
+        <p class="card-value">{{ enrollments|length }}</p>
+        <p class="card-label">Currently active</p>
+    </div>
+    <div class="overview-card">
+        <h4>✅ Tasks Completed</h4>
+        <p class="card-value">0</p>
+        <p class="card-label">Out of total</p>
+    </div>
+    <div class="overview-card">
+        <h4>⏳ Tasks Pending</h4>
+        <p class="card-value">0</p>
+        <p class="card-label">Awaiting review</p>
+    </div>
+    <div class="overview-card">
+        <h4>⏲️ Days Remaining</h4>
+        <p class="card-value">0</p>
+        <p class="card-label">In current cycle</p>
+    </div>
+</div>
+
+<!-- Your Internships Section -->
+<section style="margin-top: 2rem;">
+    <h3>💼 Your Internships</h3>
+    {% if enrollments %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Program</th>
+                    <th>Code</th>
+                    <th>Batch</th>
+                    <th>Duration</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enrollment in enrollments %}
+                    <tr>
+                        <td><strong>{{ enrollment.program.name }}</strong></td>
+                        <td>{{ enrollment.program.code }}</td>
+                        <td>{{ enrollment.batch.name }}</td>
+                        <td>4-6 weeks</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%;">60%</div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge" style="background-color: var(--primary-color);">
+                                {{ enrollment.status|upper }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-small">Details</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-state">
+            <p><strong>No Internships Assigned</strong></p>
+            <p>You do not have any internship assignments yet. Apply for an internship to get started.</p>
+        </div>
+    {% endif %}
+</section>
+
+<!-- Task Management -->
+<section style="margin-top: 2rem;">
+    <h3>📋 Recent Tasks</h3>
+    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+        <p style="margin: 0;">📌 <strong>Task Management System Coming Soon</strong></p>
+        <p style="margin: 0.5rem 0 0 0; color: #666;">View assigned tasks, submit work, and track your progress in real-time.</p>
+    </div>
+</section>
+
+<!-- Quick Actions -->
+<section style="margin-top: 2rem;">
+    <h3>⚡ Quick Actions</h3>
+    <div class="action-buttons">
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📋 View Tasks</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📤 Submit Work</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📊 Track Progress</a>
+        <a href="#" class="btn-small">💬 Contact Mentor</a>
+    </div>
+</section>
+
+<!-- Coming Soon -->
+<section style="margin-top: 2rem;">
+    <h3>🚀 Coming Soon</h3>
+    <ul style="margin-left: 1.5rem; color: #666;">
+        <li>📋 Task assignment and tracking system</li>
+        <li>📤 Work submission and feedback</li>
+        <li>💬 Mentor communication tools</li>
+        <li>📊 Performance and progress analytics</li>
+    </ul>
+</section>
+
+<style>
+    .overview-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .overview-card {
+        background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .overview-card h4 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 0.95rem;
+    }
+
+    .card-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 0;
+    }
+
+    .card-label {
+        margin: 0.5rem 0 0 0;
+        color: #999;
+        font-size: 0.85rem;
+    }
+
+    .progress-bar {
+        background: #e0e0e0;
+        height: 24px;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-fill {
+        background: linear-gradient(90deg, #4CAF50, #45a049);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transition: width 0.3s ease;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .empty-state {
+        background: #f9f9f9;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        color: #999;
+    }
+
+    @media (max-width: 768px) {
+        .overview-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .action-buttons .btn-small {
+            margin-right: 0 !important;
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+

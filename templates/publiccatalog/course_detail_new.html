@@ -1,0 +1,228 @@
+{% extends "publicsite/base_public.html" %}
+
+{% block title %}{{ page_title }} - Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .course-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .course-header {
+        background: linear-gradient(135deg, #2E2E2E, #3a3a3a);
+        color: white;
+        padding: 3rem 2rem;
+        border-radius: 4px;
+        margin-bottom: 3rem;
+        border-left: 4px solid #B08D57;
+    }
+
+    .course-header h1 {
+        font-family: 'Merriweather', serif;
+        font-size: 2.5rem;
+        margin: 0 0 1rem 0;
+    }
+
+    .course-description {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        margin: 0;
+        opacity: 0.95;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .section-title {
+        font-family: 'Merriweather', serif;
+        font-size: 1.5rem;
+        color: #2E2E2E;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #B08D57;
+        padding-bottom: 1rem;
+    }
+
+    .units-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .unit-card {
+        background: white;
+        border: 1px solid #EEEBE5;
+        border-radius: 4px;
+        padding: 1.5rem;
+        border-left: 4px solid #7A1F2B;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .unit-card:hover {
+        box-shadow: 0 4px 12px rgba(122, 31, 43, 0.2);
+        transform: translateX(4px);
+    }
+
+    .unit-number {
+        font-family: 'Merriweather', serif;
+        font-size: 0.9rem;
+        color: #B08D57;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+    }
+
+    .unit-title {
+        font-family: 'Merriweather', serif;
+        font-size: 1.1rem;
+        color: #2E2E2E;
+        margin: 0;
+    }
+
+    .unit-card a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .unit-card:hover .unit-title {
+        color: #7A1F2B;
+    }
+
+    .podcasts-section {
+        background: #F7F6F3;
+        padding: 2rem;
+        border-radius: 4px;
+        border-left: 4px solid #B08D57;
+    }
+
+    .podcast-item {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+
+    .podcast-content {
+        font-family: 'Inter', sans-serif;
+        color: #333;
+        line-height: 1.6;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .podcast-content h3 {
+        font-family: 'Merriweather', serif;
+        color: #7A1F2B;
+        margin-top: 1rem;
+    }
+
+    .podcast-content h3:first-child {
+        margin-top: 0;
+    }
+
+    .podcast-content a {
+        color: #7A1F2B;
+        text-decoration: none;
+    }
+
+    .podcast-content a:hover {
+        text-decoration: underline;
+    }
+
+    .podcast-content iframe {
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: #7A1F2B;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 4px;
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        transition: all 0.3s;
+        margin-top: 1rem;
+    }
+
+    .cta-button:hover {
+        background: #9b2636;
+        color: white;
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .course-header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<div class="course-container">
+    <!-- Course Header -->
+    <div class="course-header">
+        <h1>{{ subject.name }}</h1>
+        <p class="course-description">
+            Complete learning curriculum with structured units, comprehensive notes, and supplementary resources.
+        </p>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+        <!-- Units Section -->
+        <div>
+            <h2 class="section-title">📖 Learning Units</h2>
+            <div class="units-list">
+                {% for unit in units %}
+                    <div class="unit-card">
+                        <a href="{% url 'publiccatalog:unit_detail' subject.slug unit.slug %}">
+                            <div class="unit-number">Unit {{ unit.number }}</div>
+                            <h3 class="unit-title">{{ unit.title }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Podcasts Section -->
+        <div>
+            <h2 class="section-title">🎙️ Learning Podcast</h2>
+            {% if podcasts %}
+                <div class="podcasts-section">
+                    {% for podcast in podcasts %}
+                        <div class="podcast-item">
+                            <div class="podcast-content">
+                                {{ podcast.content_html|safe }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div style="background: #EEEBE5; padding: 2rem; border-radius: 4px; text-align: center; color: #999;">
+                    <p>No podcast content available for this course yet.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Course Overview -->
+    <div style="margin-top: 3rem; padding: 2rem; background: white; border: 1px solid #EEEBE5; border-radius: 4px;">
+        <h2 class="section-title">About This Course</h2>
+        <div style="font-family: 'Inter', sans-serif; color: #333; line-height: 1.7;">
+            {{ subject.content_html|safe }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,317 @@
+{% extends 'publicsite/base_public.html' %}
+
+{% block title %}{{ page_title }} — Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .podcast-header {
+        background: #2E2E2E;
+        color: #F7F6F3;
+        padding: 4rem 1.5rem;
+        text-align: center;
+        border-bottom: 3px solid #B08D57;
+    }
+
+    .podcast-header h1 {
+        font-size: 3rem;
+        margin: 0 0 1rem 0;
+        font-family: 'Merriweather', serif;
+    }
+
+    .podcast-header .tagline {
+        font-size: 1.25rem;
+        color: #B08D57;
+        margin: 0;
+        line-height: 1.6;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .podcast-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+    }
+
+    .podcast-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .podcast-intro p {
+        color: #666;
+        font-size: 1rem;
+        line-height: 1.8;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .episodes-grid {
+        display: grid;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .episode-card {
+        background: #FFFFFF;
+        border: 1px solid #EEEBE5;
+        border-left: 4px solid #B08D57;
+        border-radius: 4px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .episode-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+
+    .episode-number {
+        display: inline-block;
+        background: #F7F6F3;
+        color: #B08D57;
+        padding: 0.4rem 1rem;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .episode-card h3 {
+        color: #2E2E2E;
+        font-size: 1.5rem;
+        margin: 0.5rem 0 1rem 0;
+        font-family: 'Merriweather', serif;
+    }
+
+    .episode-meta {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #EEEBE5;
+        font-size: 0.9rem;
+        color: #999;
+        flex-wrap: wrap;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .episode-card p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .episode-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .episode-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        background: #F7F6F3;
+        color: #B08D57;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .episode-link:hover {
+        background: #B08D57;
+        color: #FFFFFF;
+    }
+
+    .episode-link.primary {
+        background: #B08D57;
+        color: #FFFFFF;
+    }
+
+    .episode-link.primary:hover {
+        background: #7A1F2B;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem;
+        background: #F7F6F3;
+        border-radius: 8px;
+        margin: 2rem 0;
+    }
+
+    .empty-state h3 {
+        color: #2E2E2E;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .empty-state p {
+        color: #666;
+        margin: 0;
+    }
+
+    .subscribe-section {
+        background: #F7F6F3;
+        border: 2px solid #B08D57;
+        border-radius: 8px;
+        padding: 2.5rem;
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .subscribe-section h3 {
+        color: #2E2E2E;
+        font-size: 1.5rem;
+        margin: 0 0 1rem 0;
+        font-family: 'Merriweather', serif;
+    }
+
+    .subscribe-section p {
+        color: #666;
+        margin: 0 0 1.5rem 0;
+    }
+
+    .subscribe-links {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .subscribe-btn {
+        padding: 0.75rem 1.5rem;
+        background: #B08D57;
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .subscribe-btn:hover {
+        background: #7A1F2B;
+    }
+
+    @media (max-width: 768px) {
+        .podcast-header h1 {
+            font-size: 2rem;
+        }
+
+        .episode-meta {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .episode-links {
+            flex-direction: column;
+        }
+
+        .subscribe-links {
+            flex-direction: column;
+        }
+
+        .subscribe-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+<div class="podcast-header">
+    <h1>🎙 {{ page_title }}</h1>
+    <p class="tagline">{{ podcast_description }}</p>
+</div>
+
+<div class="podcast-container">
+    <div class="podcast-intro">
+        <p>
+            Join us for conversations with industry experts, researchers, and thought leaders as we explore 
+            the cutting edge of AI, technology, and innovation. Learn about breakthroughs, challenges, and 
+            the future of artificial intelligence and engineering.
+        </p>
+        <p style="font-size: 0.95rem; color: #999; margin-top: 1rem;">
+            {{ total_episodes }} episode{{ total_episodes|pluralize }} available
+        </p>
+    </div>
+
+    {% if episodes %}
+        <div class="episodes-grid">
+            {% for episode in episodes %}
+                <div class="episode-card">
+                    <span class="episode-number">Episode {{ episode.episode_number }}</span>
+                    <h3>{{ episode.title }}</h3>
+                    
+                    <div class="episode-meta">
+                        <div class="meta-item">📅 {{ episode.air_date|date:"F d, Y" }}</div>
+                        {% if episode.guest_name %}
+                            <div class="meta-item">👤 {{ episode.guest_name }}</div>
+                        {% endif %}
+                        {% if episode.duration_minutes %}
+                            <div class="meta-item">⏱ {{ episode.duration_minutes }} min</div>
+                        {% endif %}
+                    </div>
+                    
+                    <p>{{ episode.description|truncatewords:40 }}</p>
+                    
+                    <div class="episode-links">
+                        {% if episode.audio_url %}
+                            <a href="{{ episode.audio_url }}" target="_blank" class="episode-link primary">
+                                🎵 Listen Now
+                            </a>
+                        {% endif %}
+                        {% if episode.video_url %}
+                            <a href="{{ episode.video_url }}" target="_blank" class="episode-link">
+                                📺 Watch
+                            </a>
+                        {% endif %}
+                        {% if episode.spotify_url %}
+                            <a href="{{ episode.spotify_url }}" target="_blank" class="episode-link">
+                                🎧 Spotify
+                            </a>
+                        {% endif %}
+                        {% if episode.apple_podcasts_url %}
+                            <a href="{{ episode.apple_podcasts_url }}" target="_blank" class="episode-link">
+                                🍎 Apple Podcasts
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <h3>Coming Soon</h3>
+            <p>New episodes will be available shortly. Stay tuned for conversations with industry leaders!</p>
+        </div>
+    {% endif %}
+
+    <div class="subscribe-section">
+        <h3>Subscribe to Chatake Voices Podcast</h3>
+        <p>Get new episodes delivered to your favorite podcast app</p>
+        <div class="subscribe-links">
+            <a href="https://open.spotify.com/" target="_blank" class="subscribe-btn">
+                🎧 Spotify
+            </a>
+            <a href="https://podcasts.apple.com/" target="_blank" class="subscribe-btn">
+                🍎 Apple Podcasts
+            </a>
+            <a href="https://www.youtube.com/@chatakeinnoworks" target="_blank" class="subscribe-btn">
+                📺 YouTube
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

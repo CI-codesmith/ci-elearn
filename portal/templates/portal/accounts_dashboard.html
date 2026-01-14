@@ -1,2 +1,179 @@
-{% extends 'portal/dashboard_base.html' %}
-{% block content %}{{ block.super }}{% endblock %}
+{% extends "portal/dashboard_base.html" %}
+
+{% block title %}Accounts Dashboard - Chatake Innoworks CI-Platform{% endblock %}
+
+{% block dashboard_content %}
+
+<!-- Account Summary Cards -->
+<div class="account-summary">
+    <div class="summary-card">
+        <h4>💰 Outstanding Balance</h4>
+        <p class="summary-value">₹0.00</p>
+        <p class="summary-label">Due by: —</p>
+    </div>
+    <div class="summary-card">
+        <h4>✅ Last Payment</h4>
+        <p class="summary-value">—</p>
+        <p class="summary-label">Date: —</p>
+    </div>
+    <div class="summary-card">
+        <h4>📋 Active Plans</h4>
+        <p class="summary-value">0</p>
+        <p class="summary-label">Fee Plans</p>
+    </div>
+    <div class="summary-card">
+        <h4>📅 Payment Due</h4>
+        <p class="summary-value">—</p>
+        <p class="summary-label">Next payment</p>
+    </div>
+</div>
+
+<!-- Fee Management Section -->
+<section style="margin-top: 2rem;">
+    <h3>💳 Fee Management</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Program</th>
+                <th>Fee Plan</th>
+                <th>Amount</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if enrollments %}
+                {% for enrollment in enrollments %}
+                    <tr>
+                        <td><strong>{{ enrollment.program.name }}</strong></td>
+                        <td>Standard Plan</td>
+                        <td>₹0.00</td>
+                        <td>—</td>
+                        <td><span class="badge" style="background-color: #90EE90;">Paid</span></td>
+                        <td><a href="#" class="btn-small">View</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 2rem; color: #999;">
+                        No fee plans assigned yet.
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</section>
+
+<!-- Payment History Section -->
+<section style="margin-top: 2rem;">
+    <h3>📊 Payment History</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Program</th>
+                <th>Amount</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th>Receipt</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 2rem; color: #999;">
+                    No payment history available.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Quick Actions -->
+<section style="margin-top: 2rem;">
+    <h3>🔧 Quick Actions</h3>
+    <div class="action-buttons">
+        <a href="#" class="btn-small" style="margin-right: 1rem;">💳 Make Payment</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📥 Download Receipt</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📧 Email Invoice</a>
+        <a href="#" class="btn-small">⚙️ Update Payment Method</a>
+    </div>
+</section>
+
+<!-- Coming Soon Features -->
+<section style="margin-top: 2rem;">
+    <h3>🚀 Coming Soon</h3>
+    <ul style="margin-left: 1.5rem; color: #666;">
+        <li>Recurring payment setup</li>
+        <li>Financial statements & reports</li>
+        <li>Payment method management</li>
+        <li>Tax receipts & documentation</li>
+        <li>Payment reminders & notifications</li>
+    </ul>
+</section>
+
+<style>
+    .account-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .summary-card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s;
+    }
+
+    .summary-card:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 2px 8px rgba(122, 31, 43, 0.1);
+    }
+
+    .summary-card h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--primary-color);
+        font-size: 0.95rem;
+    }
+
+    .summary-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 0.5rem 0;
+    }
+
+    .summary-label {
+        font-size: 0.85rem;
+        color: #999;
+        margin: 0;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .account-summary {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .action-buttons .btn-small {
+            margin-right: 0 !important;
+            width: 100%;
+        }
+    }
+</style>
+
+{% endblock %}
+

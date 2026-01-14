@@ -1,0 +1,195 @@
+{% extends "publicsite/base_public.html" %}
+
+{% block title %}Courses & Learning Subjects - Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .courses-header {
+        background: linear-gradient(135deg, #2E2E2E, #3a3a3a);
+        color: white;
+        padding: 4rem 2rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        border-bottom: 3px solid #B08D57;
+    }
+
+    .courses-header h1 {
+        font-family: 'Merriweather', serif;
+        font-size: 2.5rem;
+        margin: 0 0 1rem 0;
+    }
+
+    .courses-header p {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        margin: 0;
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.95;
+    }
+
+    .courses-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+    }
+
+    .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    .course-card {
+        background: white;
+        border: 1px solid #EEEBE5;
+        border-radius: 4px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .course-card:hover {
+        box-shadow: 0 8px 24px rgba(122, 31, 43, 0.15);
+        transform: translateY(-4px);
+    }
+
+    .card-header {
+        padding: 1.5rem;
+        background: #F7F6F3;
+        border-left: 4px solid #7A1F2B;
+    }
+
+    .card-header h3 {
+        font-family: 'Merriweather', serif;
+        font-size: 1.5rem;
+        color: #2E2E2E;
+        margin: 0;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .course-meta {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .badge {
+        background: #7A1F2B;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 16px;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .badge-secondary {
+        background: #B08D57;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 16px;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .course-description {
+        color: #666;
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .card-footer {
+        padding: 1.5rem;
+        border-top: 1px solid #EEEBE5;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-family: 'Inter', sans-serif;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: #7A1F2B;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: #9b2636;
+        text-decoration: none;
+        color: white;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #999;
+        font-family: 'Inter', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+        .courses-header h1 {
+            font-size: 2rem;
+        }
+
+        .courses-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- Header -->
+<div class="courses-header">
+    <h1>Learning Subjects</h1>
+    <p>Explore carefully structured academic courses with complete materials, units, notes, and supplementary resources</p>
+</div>
+
+<!-- Courses Grid -->
+<div class="courses-container">
+    {% if subjects %}
+        <div class="courses-grid">
+            {% for subject in subjects %}
+                <div class="course-card">
+                    <div class="card-header">
+                        <h3>{{ subject.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="course-meta">
+                            <span class="badge">📚 Public Course</span>
+                            <span class="badge-secondary">{{ subject.slug }}</span>
+                        </p>
+                        <p class="course-description">
+                            Complete structured curriculum with organized units, comprehensive study materials, notes in multiple formats, and supplementary podcast resources.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'publiccatalog:course_detail' subject.slug %}" class="btn btn-primary">
+                            View Course →
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <p>No courses available at this time. Check back soon!</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

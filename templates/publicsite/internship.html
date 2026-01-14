@@ -1,0 +1,167 @@
+{% extends 'publicsite/base_public.html' %}
+
+{% block title %}Internship Programs — Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: #2E2E2E;
+        color: #F7F6F3;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        border-bottom: 3px solid #B08D57;
+    }
+
+    .page-header h1 {
+        color: #F7F6F3;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .internship-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+    }
+
+    .intro-section {
+        background-color: #F7F6F3;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+
+    .intro-section p {
+        color: #666;
+        line-height: 1.8;
+    }
+
+    .program-section {
+        margin-bottom: 2rem;
+        padding: 2rem;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-left: 4px solid #7A1F2B;
+    }
+
+    .program-section h3 {
+        color: #7A1F2B;
+        margin-top: 0;
+    }
+
+    .program-section p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .benefit-item {
+        padding: 1.5rem;
+        background-color: #F7F6F3;
+        border-radius: 8px;
+    }
+
+    .benefit-item h4 {
+        color: #7A1F2B;
+        margin-bottom: 0.5rem;
+    }
+
+    .benefit-item p {
+        color: #666;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+</style>
+
+<section class="page-header">
+    <h1>Internship Programs</h1>
+    <p>Build professional experience through structured internships</p>
+</section>
+
+<div class="internship-container">
+    <section class="intro-section">
+        <h2 style="color: #2E2E2E; margin-top: 0;">About Our Internship Program</h2>
+        <p>
+            Chatake Innoworks offers comprehensive internship programs designed to bridge the gap between 
+            academic learning and professional practice. Our programs provide structured experience, 
+            mentorship, and professional growth opportunities.
+        </p>
+    </section>
+
+    <section class="program-section">
+        <h3>Program Features</h3>
+        <p>
+            Our internship programs are structured around professional development and real-world experience:
+        </p>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <h4>Structured Mentorship</h4>
+                <p>Work with experienced professionals and industry mentors throughout your internship</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Real Projects</h4>
+                <p>Contribute to real projects that impact the organization and build your portfolio</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Skill Development</h4>
+                <p>Develop industry-relevant skills through hands-on work and structured training</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Certification</h4>
+                <p>Earn recognized certificates upon successful completion of your internship</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Network Building</h4>
+                <p>Build professional networks and connections within the industry</p>
+            </div>
+            <div class="benefit-item">
+                <h4>Career Opportunities</h4>
+                <p>Potential for conversion to full-time roles for high performers</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="program-section">
+        <h3>Internship Domains</h3>
+        <p>
+            We offer internships across multiple domains:
+        </p>
+        <ul style="color: #666; line-height: 1.8;">
+            <li><strong>Technology & Development:</strong> Software development, web design, data analytics</li>
+            <li><strong>Education & Training:</strong> Curriculum development, content creation, instructional design</li>
+            <li><strong>Business & Operations:</strong> Project management, business analysis, operations</li>
+            <li><strong>Marketing & Communications:</strong> Digital marketing, content marketing, brand management</li>
+        </ul>
+    </section>
+
+    <section class="program-section">
+        <h3>Application Process</h3>
+        <p>
+            Interested in joining our internship program? Here's how to apply:
+        </p>
+        <ol style="color: #666; line-height: 1.8;">
+            <li>Login to CI-Internship portal using your credentials</li>
+            <li>Browse available internship opportunities</li>
+            <li>Apply for positions matching your skills and interests</li>
+            <li>Complete the selection process</li>
+            <li>Begin your internship journey with our team</li>
+        </ol>
+        <p style="margin-top: 1.5rem;">
+            <a href="{% url 'admin:login' %}" class="btn btn-primary">Login to Apply</a>
+        </p>
+    </section>
+
+    <section style="background-color: #F7F6F3; padding: 2rem; border-radius: 8px; text-align: center; margin-top: 2rem;">
+        <h3 style="color: #2E2E2E;">Questions About Our Internship Program?</h3>
+        <p style="color: #666;">Reach out to us directly for more information.</p>
+        <a href="{% url 'publicsite:contact' %}" class="btn btn-primary">Contact Us</a>
+    </section>
+</div>
+{% endblock %}

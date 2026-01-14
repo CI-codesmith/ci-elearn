@@ -1,0 +1,162 @@
+{% extends 'publicsite/base_public.html' %}
+
+{% block title %}Divisions — Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: #2E2E2E;
+        color: #F7F6F3;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        border-bottom: 3px solid #B08D57;
+    }
+
+    .page-header h1 {
+        color: #F7F6F3;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .divisions-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+    }
+
+    .division-section {
+        margin-bottom: 4rem;
+        padding: 2rem;
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-left: 4px solid #7A1F2B;
+    }
+
+    .division-section h2 {
+        color: #7A1F2B;
+        margin-bottom: 1rem;
+    }
+
+    .division-section p {
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .features-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+
+    .features-list li {
+        padding: 0.5rem 0;
+        color: #666;
+    }
+
+    .features-list li:before {
+        content: "✓ ";
+        color: #7A1F2B;
+        font-weight: 700;
+        margin-right: 0.5rem;
+    }
+</style>
+
+<section class="page-header">
+    <h1>Our Divisions</h1>
+    <p>Integrated solutions across education, coaching, internships, and projects</p>
+</section>
+
+<div class="divisions-container">
+    <div class="division-section" id="ci-elearn">
+        <h2>CI-Elearn</h2>
+        <p>
+            Comprehensive Learning Management System for colleges and educational institutions. 
+            CI-Elearn provides all tools needed to manage courses, deliver content, assess students, 
+            and track academic progress.
+        </p>
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+            <li>Course management and batch organization</li>
+            <li>Digital content delivery and assignments</li>
+            <li>Assessment and grading tools</li>
+            <li>Student progress tracking and analytics</li>
+            <li>Enrollment management</li>
+            <li>Institutional reporting and records</li>
+        </ul>
+    </div>
+
+    <div class="division-section" id="ci-edusphere">
+        <h2>CI-EduSphere</h2>
+        <p>
+            Coaching and tutoring platform designed for academic preparation centers, skill development 
+            programs, and institutional training. Manage batches, schedules, assessments, and student 
+            performance with a unified interface.
+        </p>
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+            <li>Batch and class management</li>
+            <li>Schedule and timetable management</li>
+            <li>Performance assessment and analytics</li>
+            <li>Student tracking and progress reports</li>
+            <li>Resource and material management</li>
+            <li>Parent and stakeholder communication</li>
+        </ul>
+    </div>
+
+    <div class="division-section" id="ci-internship">
+        <h2>CI-Internship</h2>
+        <p>
+            End-to-end internship program management platform. Connect students with professional opportunities, 
+            track progress, manage evaluations, and build professional networks through structured internship 
+            programs.
+        </p>
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+            <li>Internship opportunity listing and application</li>
+            <li>Student profile and skill matching</li>
+            <li>Progress tracking and task management</li>
+            <li>Mentor and supervisor interface</li>
+            <li>Performance evaluation tools</li>
+            <li>Certificate and credential management</li>
+        </ul>
+    </div>
+
+    <div class="division-section" id="ci-projects">
+        <h2>CI-Projects</h2>
+        <p>
+            Project management and team collaboration platform for managing complex initiatives, 
+            organizing teams, tracking deliverables, and ensuring accountability across multiple 
+            concurrent projects.
+        </p>
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+            <li>Project creation and organization</li>
+            <li>Team member management</li>
+            <li>Milestone and deliverable tracking</li>
+            <li>Task assignment and workflow management</li>
+            <li>Progress visibility and reporting</li>
+            <li>Collaboration tools and communication</li>
+        </ul>
+    </div>
+
+    <div class="division-section" id="ci-accounts">
+        <h2>CI-Accounts</h2>
+        <p>
+            Comprehensive financial and administrative management module. Handle fee management, 
+            payments, accounting, invoicing, and institutional administrative tasks with institutional-grade 
+            control and audit trails.
+        </p>
+        <h4>Key Features:</h4>
+        <ul class="features-list">
+            <li>Fee and payment management</li>
+            <li>Receipt and invoice generation</li>
+            <li>Accounting and ledger management</li>
+            <li>Financial reporting and analytics</li>
+            <li>Payment gateway integration</li>
+            <li>Audit trails and compliance</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

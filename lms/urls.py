@@ -16,12 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import TemplateView
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="home.html"), name="root"),
+    # Public website at root
+    path("", include(("publicsite.urls", "publicsite"), namespace="publicsite")),
+    
+    # Public catalog (courses, subjects, notes - no login required)
+    path("", include(("publiccatalog.urls", "publiccatalog"), namespace="publiccatalog")),
+    
+    # Admin
     path("admin/", admin.site.urls),
+    
+    # Internal portal (requires login redirect)
+    path("portal/", include(("portal.urls", "portal"), namespace="portal")),
+    
+    # Legacy CI-Elearn (untouched)
     path("student/", include("students.urls")),
     path("assessments/", include("assessments.urls")),
-    path("portal/", include(("portal.urls", "portal"), namespace="portal")),
 ]

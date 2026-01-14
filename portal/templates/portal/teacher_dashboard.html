@@ -1,2 +1,144 @@
-{% extends 'portal/dashboard_base.html' %}
-{% block content %}{{ block.super }}{% endblock %}
+{% extends "portal/dashboard_base.html" %}
+
+{% block title %}Teacher Dashboard - Chatake Innoworks CI-Platform{% endblock %}
+
+{% block dashboard_content %}
+
+<!-- Class Statistics -->
+<div class="stats-cards">
+    <div class="stat-card">
+        <h4>👥 Total Classes</h4>
+        <p class="stat-value">{{ enrollments|length }}</p>
+    </div>
+    <div class="stat-card">
+        <h4>Total Students</h4>
+        <p class="stat-value">0</p>
+    </div>
+    <div class="stat-card">
+        <h4>✅ Submissions Graded</h4>
+        <p class="stat-value">0</p>
+    </div>
+    <div class="stat-card">
+        <h4>⏳ Pending Review</h4>
+        <p class="stat-value">0</p>
+    </div>
+</div>
+
+<!-- Your Classes Section -->
+<section style="margin-top: 2rem;">
+    <h3>👥 Your Classes & Batches</h3>
+    {% if enrollments %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Program</th>
+                    <th>Code</th>
+                    <th>Batch</th>
+                    <th>Students</th>
+                    <th>Submissions</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enrollment in enrollments %}
+                    <tr>
+                        <td><strong>{{ enrollment.program.name }}</strong></td>
+                        <td>{{ enrollment.program.code }}</td>
+                        <td>{{ enrollment.batch.name }}</td>
+                        <td><span class="badge">—</span></td>
+                        <td><span class="badge">0/0</span></td>
+                        <td>
+                            <span class="badge" style="background-color: var(--primary-color);">
+                                {{ enrollment.status|upper }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-small">Manage</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-state">
+            <p><strong>No Teaching Assignments</strong></p>
+            <p>You do not have any teaching assignments yet. Contact administrator for assignment.</p>
+        </div>
+    {% endif %}
+</section>
+
+<!-- Management Options -->
+<section style="margin-top: 2rem;">
+    <h3>⚡ Quick Actions</h3>
+    <div class="action-buttons">
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📝 Create Assignment</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">✏️ Grade Submissions</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📊 View Analytics</a>
+        <a href="#" class="btn-small">📧 Message Students</a>
+    </div>
+</section>
+
+<!-- Coming Soon -->
+<section style="margin-top: 2rem;">
+    <h3>🚀 Coming Soon</h3>
+    <ul style="margin-left: 1.5rem; color: #666;">
+        <li>📝 Create and manage assignments</li>
+        <li>✅ Grade submissions and provide feedback</li>
+        <li>📊 Class performance analytics</li>
+        <li>📋 Attendance tracking and reports</li>
+    </ul>
+</section>
+
+<style>
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-card h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--primary-color);
+        font-size: 0.9rem;
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 0;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .stats-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .action-buttons .btn-small {
+            margin-right: 0 !important;
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+

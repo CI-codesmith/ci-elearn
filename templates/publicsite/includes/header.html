@@ -1,0 +1,20 @@
+<header class="institutional-header">
+    <div class="header-container">
+        <div class="logo-section">
+            <a href="{% url 'publicsite:home' %}" style="display: flex; flex-direction: column; gap: 0.25rem; text-decoration: none;">
+                <div class="logo-text">Chatake Innoworks</div>
+                <div class="logo-tagline">Learning & Development Platform</div>
+            </a>
+        </div>
+        
+        <div class="header-right">
+            <nav style="display: flex; gap: 1.5rem; align-items: center;">
+                <a href="{% url 'publicsite:home' %}" class="header-link">Home</a>
+                <a href="{% url 'publicsite:about' %}" class="header-link">About</a>
+                <a href="{% url 'publicsite:divisions' %}" class="header-link">Divisions</a>
+                <a href="{% url 'publicsite:contact' %}" class="header-link">Contact</a>
+                <a href="{% url 'admin:login' %}" class="btn btn-primary btn-small">Login Portal</a>
+            </nav>
+        </div>
+    </div>
+</header>

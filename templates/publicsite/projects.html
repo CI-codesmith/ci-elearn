@@ -1,0 +1,147 @@
+{% extends 'publicsite/base_public.html' %}
+
+{% block title %}Projects — Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .page-header {
+        background: #2E2E2E;
+        color: #F7F6F3;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        border-bottom: 3px solid #B08D57;
+    }
+
+    .page-header h1 {
+        color: #F7F6F3;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .projects-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+    }
+
+    .projects-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .projects-intro p {
+        font-size: 1.05rem;
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto 1.5rem;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .project-card {
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-top: 4px solid #7A1F2B;
+        transition: all 0.3s ease;
+    }
+
+    .project-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px);
+    }
+
+    .project-card h3 {
+        color: #7A1F2B;
+        margin-top: 0;
+    }
+
+    .project-card p {
+        color: #666;
+        line-height: 1.6;
+    }
+
+    .project-status {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-top: 1rem;
+    }
+
+    .status-active {
+        background-color: #4CAF50;
+        color: #FFFFFF;
+    }
+
+    .status-planning {
+        background-color: #FF9800;
+        color: #FFFFFF;
+    }
+
+    .status-completed {
+        background-color: #2196F3;
+        color: #FFFFFF;
+    }
+</style>
+
+<section class="page-header">
+    <h1>Our Projects</h1>
+    <p>Flagship initiatives driving innovation and impact</p>
+</section>
+
+<div class="projects-container">
+    <div class="projects-intro">
+        <p>
+            Chatake Innoworks drives forward several key initiatives that demonstrate our commitment to 
+            professional excellence and institutional innovation.
+        </p>
+    </div>
+
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>Apollo</h3>
+            <p>
+                Next-generation learning analytics platform designed to provide deep insights into student 
+                performance, engagement, and learning outcomes. Apollo integrates data from all divisions 
+                to deliver actionable intelligence.
+            </p>
+            <span class="project-status status-active">In Development</span>
+        </div>
+
+        <div class="project-card">
+            <h3>GFIS (Global Feedback & Impact System)</h3>
+            <p>
+                Comprehensive institutional feedback and quality assurance system. GFIS enables organizations 
+                to gather systematic feedback, measure impact, and drive continuous improvement across all 
+                operations and divisions.
+            </p>
+            <span class="project-status status-active">In Development</span>
+        </div>
+
+        <div class="project-card">
+            <h3>Nexora</h3>
+            <p>
+                Advanced professional networking and skill marketplace platform. Nexora connects learners, 
+                professionals, and organizations, facilitating career growth, mentorship, and professional 
+                development opportunities.
+            </p>
+            <span class="project-status status-planning">Planning</span>
+        </div>
+    </div>
+
+    <div style="background-color: #F7F6F3; padding: 2rem; border-radius: 8px; text-align: center; margin-top: 3rem;">
+        <h3 style="color: #2E2E2E;">Want to Know More?</h3>
+        <p style="color: #666;">Contact us to learn more about our projects and how they can benefit your organization.</p>
+        <a href="{% url 'publicsite:contact' %}" class="btn btn-primary">Get in Touch</a>
+    </div>
+</div>
+{% endblock %}

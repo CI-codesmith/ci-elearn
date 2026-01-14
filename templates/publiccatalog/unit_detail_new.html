@@ -1,0 +1,364 @@
+{% extends "publicsite/base_public.html" %}
+
+{% block title %}{{ page_title }} - Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .unit-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .breadcrumb {
+        display: flex;
+        gap: 0.5rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        color: #666;
+    }
+
+    .breadcrumb a {
+        color: #7A1F2B;
+        text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+
+    .unit-header {
+        background: #F7F6F3;
+        border-left: 4px solid #7A1F2B;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 4px;
+    }
+
+    .unit-header h1 {
+        font-family: 'Merriweather', serif;
+        font-size: 2rem;
+        color: #2E2E2E;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .unit-meta {
+        font-family: 'Inter', sans-serif;
+        color: #999;
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .unit-content {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+    }
+
+    .unit-main {
+        background: white;
+        border: 1px solid #EEEBE5;
+        border-radius: 4px;
+        padding: 2rem;
+    }
+
+    .unit-main h2 {
+        font-family: 'Merriweather', serif;
+        color: #2E2E2E;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .unit-main h2:first-child {
+        margin-top: 0;
+    }
+
+    .unit-main h3 {
+        font-family: 'Merriweather', serif;
+        color: #7A1F2B;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+    }
+
+    .unit-main p {
+        font-family: 'Inter', sans-serif;
+        color: #333;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .unit-main ul, .unit-main ol {
+        font-family: 'Inter', sans-serif;
+        margin: 1rem 0 1rem 2rem;
+        line-height: 1.7;
+    }
+
+    .unit-main li {
+        margin-bottom: 0.5rem;
+    }
+
+    .notes-section {
+        background: #F7F6F3;
+        padding: 1.5rem;
+        border-radius: 4px;
+        margin: 2rem 0;
+        border-left: 4px solid #B08D57;
+    }
+
+    .notes-section h3 {
+        color: #2E2E2E;
+        margin-top: 0;
+    }
+
+    .note-item {
+        background: white;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .note-type {
+        display: inline-block;
+        background: #7A1F2B;
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-right: 1rem;
+    }
+
+    .note-type.pdf {
+        background: #B08D57;
+    }
+
+    .podcast-section {
+        background: #2E2E2E;
+        color: white;
+        padding: 2rem;
+        border-radius: 4px;
+        margin: 2rem 0;
+    }
+
+    .podcast-section h3 {
+        color: #B08D57;
+        margin-top: 0;
+    }
+
+    .podcast-embed {
+        background: #333;
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .sidebar-card {
+        background: white;
+        border: 1px solid #EEEBE5;
+        border-radius: 4px;
+        padding: 1.5rem;
+    }
+
+    .sidebar-card h4 {
+        font-family: 'Merriweather', serif;
+        color: #2E2E2E;
+        margin: 0 0 1rem 0;
+        font-size: 1.1rem;
+    }
+
+    .sidebar-card p {
+        font-family: 'Inter', sans-serif;
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .sidebar-link {
+        color: #7A1F2B;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .sidebar-link:hover {
+        text-decoration: underline;
+    }
+
+    .unit-nav {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #EEEBE5;
+    }
+
+    .nav-button {
+        flex: 1;
+        padding: 1rem;
+        text-align: center;
+        border: 1px solid #B08D57;
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+        text-decoration: none;
+        color: #7A1F2B;
+        transition: all 0.3s;
+    }
+
+    .nav-button:hover {
+        background: #7A1F2B;
+        color: white;
+    }
+
+    .nav-button.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+        .unit-content {
+            grid-template-columns: 1fr;
+        }
+
+        .unit-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .unit-nav {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="unit-container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a> /
+        <a href="{% url 'publiccatalog:course_list' %}">Courses</a> /
+        <a href="{% url 'publiccatalog:course_detail' subject.slug %}">{{ subject.name }}</a> /
+        <span>{{ unit.slug }}</span>
+    </div>
+
+    <!-- Unit Header -->
+    <div class="unit-header">
+        <h1>{{ unit.slug }}</h1>
+        <p class="unit-meta">
+            Unit {{ current_unit_number }} of {{ total_units }} • {{ subject.name }}
+        </p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="unit-content">
+        <div class="unit-main">
+            <!-- Unit Description -->
+            {{ unit.content_html|safe }}
+
+            <!-- Notes Section -->
+            {% if notes %}
+            <div class="notes-section">
+                <h3>📚 Unit Study Materials</h3>
+                {% for note in notes %}
+                    <div class="note-item">
+                        <div>
+                            <span class="note-type {% if note.type == 'pdf' %}pdf{% endif %}">
+                                {{ note.type|upper }}
+                            </span>
+                            {{ note.filename }}
+                        </div>
+                        {% if note.type == 'pdf' %}
+                            <a href="{{ note.url }}" class="sidebar-link">Download</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Podcast Section -->
+            {% if podcasts %}
+            <div class="podcast-section">
+                <h3>🎙️ Supplementary Podcast</h3>
+                {% for podcast in podcasts %}
+                    <div class="podcast-embed">
+                        {{ podcast.content_html|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Unit Navigation -->
+            <div class="unit-nav">
+                {% if prev_unit %}
+                    <a href="{% url 'publiccatalog:unit_detail' subject.slug prev_unit.slug %}" class="nav-button">
+                        ← {{ prev_unit.title }}
+                    </a>
+                {% else %}
+                    <div class="nav-button disabled">← Previous</div>
+                {% endif %}
+
+                {% if next_unit %}
+                    <a href="{% url 'publiccatalog:unit_detail' subject.slug next_unit.slug %}" class="nav-button">
+                        {{ next_unit.title }} →
+                    </a>
+                {% else %}
+                    <div class="nav-button disabled">Next →</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Course Info -->
+            <div class="sidebar-card">
+                <h4>Course</h4>
+                <p>
+                    <a href="{% url 'publiccatalog:course_detail' subject.slug %}" class="sidebar-link">
+                        {{ subject.name }}
+                    </a>
+                </p>
+            </div>
+
+            <!-- Units List -->
+            <div class="sidebar-card">
+                <h4>All Units</h4>
+                <div style="max-height: 400px; overflow-y: auto;">
+                    {% for u in units %}
+                        <div style="margin-bottom: 0.5rem;">
+                            {% if u.slug == unit.slug %}
+                                <strong>{{ u.number }}. {{ u.title }}</strong>
+                            {% else %}
+                                <a href="{% url 'publiccatalog:unit_detail' subject.slug u.slug %}" class="sidebar-link">
+                                    {{ u.number }}. {{ u.title }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Learning Progress -->
+            <div class="sidebar-card">
+                <h4>Progress</h4>
+                <p>
+                    <strong>{{ current_unit_number }} / {{ total_units }}</strong> units completed
+                </p>
+                <div style="background: #EEEBE5; height: 6px; border-radius: 3px; overflow: hidden; margin-top: 0.5rem;">
+                    <div style="background: #7A1F2B; height: 100%; width: {{ current_unit_number|floatformat:0 }}%; transition: width 0.3s;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

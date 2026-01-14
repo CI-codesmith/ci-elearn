@@ -1,2 +1,199 @@
-{% extends 'portal/dashboard_base.html' %}
-{% block content %}{{ block.super }}{% endblock %}
+{% extends "portal/dashboard_base.html" %}
+
+{% block title %}Admin Dashboard - Chatake Innoworks CI-Platform{% endblock %}
+
+{% block dashboard_content %}
+
+<!-- System Overview Cards -->
+<div class="system-overview">
+    <div class="overview-card">
+        <h4>👥 Total Users</h4>
+        <p class="card-value">0</p>
+        <p class="card-label">Active users</p>
+    </div>
+    <div class="overview-card">
+        <h4>Programs</h4>
+        <p class="card-value">0</p>
+        <p class="card-label">Active programs</p>
+    </div>
+    <div class="overview-card">
+        <h4>🎓 Enrollments</h4>
+        <p class="card-value">0</p>
+        <p class="card-label">Total enrollments</p>
+    </div>
+    <div class="overview-card">
+        <h4>⚠️ Alerts</h4>
+        <p class="card-value">0</p>
+        <p class="card-label">Active alerts</p>
+    </div>
+</div>
+
+<!-- System Administration -->
+<section style="margin-top: 2rem;">
+    <h3>⚙️ System Administration</h3>
+    <div class="admin-grid">
+        <div class="admin-card">
+            <h4>👥 User Management</h4>
+            <p>Manage users, roles, and permissions</p>
+            <a href="/admin/auth/user/" class="btn-small">Manage Users</a>
+        </div>
+        <div class="admin-card">
+            <h4>Programs & Batches</h4>
+            <p>Create and manage programs and batches</p>
+            <a href="/admin/core/program/" class="btn-small">Manage Programs</a>
+        </div>
+        <div class="admin-card">
+            <h4>🎓 Enrollments</h4>
+            <p>View and manage student enrollments</p>
+            <a href="/admin/core/enrollment/" class="btn-small">Manage Enrollments</a>
+        </div>
+        <div class="admin-card">
+            <h4>🏫 School Programs</h4>
+            <p>Manage school/coaching programs</p>
+            <a href="/admin/edusphere/" class="btn-small">Manage Edusphere</a>
+        </div>
+        <div class="admin-card">
+            <h4>💼 Internship Programs</h4>
+            <p>Manage internship programs and assignments</p>
+            <a href="/admin/internship/" class="btn-small">Manage Internships</a>
+        </div>
+        <div class="admin-card">
+            <h4>🚀 Project Management</h4>
+            <p>Manage projects and milestones</p>
+            <a href="/admin/projects/" class="btn-small">Manage Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Actions -->
+<section style="margin-top: 2rem;">
+    <h3>⚡ Quick Actions</h3>
+    <div class="action-buttons">
+        <a href="/admin/" class="btn-small" style="margin-right: 1rem;">📊 Django Admin</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📈 View Analytics</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">🔍 System Health</a>
+        <a href="#" class="btn-small">🔔 View Alerts</a>
+    </div>
+</section>
+
+<!-- Coming Soon -->
+<section style="margin-top: 2rem;">
+    <h3>🚀 Coming Soon</h3>
+    <ul style="margin-left: 1.5rem; color: #666;">
+        <li>📊 Comprehensive system analytics and reporting</li>
+        <li>🔔 Alert management and notifications</li>
+        <li>🔍 System health monitoring and performance metrics</li>
+        <li>📋 Audit logs and activity tracking</li>
+    </ul>
+</section>
+
+<style>
+    .system-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .overview-card {
+        background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .overview-card h4 {
+        margin: 0 0 1rem 0;
+        color: var(--primary-color);
+        font-size: 0.95rem;
+    }
+
+    .card-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 0;
+    }
+
+    .card-label {
+        margin: 0.5rem 0 0 0;
+        color: #999;
+        font-size: 0.85rem;
+    }
+
+    .admin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .admin-card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1.5rem;
+        transition: all 0.3s;
+    }
+
+    .admin-card:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 4px 8px rgba(122, 31, 43, 0.15);
+    }
+
+    .admin-card h4 {
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .admin-card p {
+        color: #666;
+        font-size: 0.95rem;
+        margin: 0 0 1rem 0;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .btn-small {
+        padding: 0.4rem 0.8rem;
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        display: inline-block;
+        transition: all 0.3s;
+    }
+
+    .btn-small:hover {
+        background-color: var(--secondary-color);
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .admin-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .system-overview {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .action-buttons .btn-small {
+            margin-right: 0 !important;
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+

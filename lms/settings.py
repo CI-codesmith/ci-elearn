@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t!*1ec)m87xwdxrgbp8km2evp8v=2u!ju1qvmmnq^a2uvzdu(=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # Allow all hosts for development
 
 
 # Application definition
@@ -43,6 +43,12 @@ INSTALLED_APPS = [
     'assessments',
 
     'core.apps.CoreConfig',
+
+    'publicsite.apps.PublicsiteConfig',
+
+    'publiccatalog.apps.PubliccatalogConfig',
+
+    'podcast.apps.PodcastConfig',
 
     'portal',
 
@@ -133,6 +139,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Login settings
+LOGIN_URL = 'admin:login'
+LOGIN_REDIRECT_URL = '/admin/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

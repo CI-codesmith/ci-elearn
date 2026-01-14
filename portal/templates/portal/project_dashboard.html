@@ -1,2 +1,185 @@
-{% extends 'portal/dashboard_base.html' %}
-{% block content %}{{ block.super }}{% endblock %}
+{% extends "portal/dashboard_base.html" %}
+
+{% block title %}Project Dashboard - Chatake Innoworks CI-Platform{% endblock %}
+
+{% block dashboard_content %}
+
+<!-- Project Statistics Cards -->
+<div class="stats-cards">
+    <div class="stat-card">
+        <h4>🚀 My Projects</h4>
+        <p class="stat-value">{{ enrollments|length }}</p>
+    </div>
+    <div class="stat-card">
+        <h4>👥 Team Size</h4>
+        <p class="stat-value">0</p>
+    </div>
+    <div class="stat-card">
+        <h4>✅ Completed</h4>
+        <p class="stat-value">0%</p>
+    </div>
+    <div class="stat-card">
+        <h4>🏁 Milestones</h4>
+        <p class="stat-value">0/0</p>
+    </div>
+</div>
+
+<!-- My Projects Section -->
+<section style="margin-top: 2rem;">
+    <h3>🚀 My Projects</h3>
+    {% if enrollments %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Code</th>
+                    <th>Program</th>
+                    <th>Team Size</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enrollment in enrollments %}
+                    <tr>
+                        <td><strong>{{ enrollment.program.name }}</strong></td>
+                        <td>{{ enrollment.program.code }}</td>
+                        <td>{{ enrollment.batch.name }}</td>
+                        <td><span class="badge">—</span></td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%;">75%</div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge" style="background-color: #FF9800;">
+                                {{ enrollment.status|upper }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-small">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="empty-state">
+            <p><strong>No Projects Assigned</strong></p>
+            <p>You are not yet assigned to any project. Contact administrator for project assignment.</p>
+        </div>
+    {% endif %}
+</section>
+
+<!-- Team Members -->
+<section style="margin-top: 2rem;">
+    <h3>👥 Team Members</h3>
+    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+        <p style="margin: 0;">👥 <strong>Team Management Coming Soon</strong></p>
+        <p style="margin: 0.5rem 0 0 0; color: #666;">View your project team members, roles, and contact information.</p>
+    </div>
+</section>
+
+<!-- Quick Actions -->
+<section style="margin-top: 2rem;">
+    <h3>⚡ Quick Actions</h3>
+    <div class="action-buttons">
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📋 Update Milestone</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">👥 View Team</a>
+        <a href="#" class="btn-small" style="margin-right: 1rem;">📥 Download Deliverable</a>
+        <a href="#" class="btn-small">➕ Add Milestone</a>
+    </div>
+</section>
+
+<!-- Coming Soon -->
+<section style="margin-top: 2rem;">
+    <h3>🚀 Coming Soon</h3>
+    <ul style="margin-left: 1.5rem; color: #666;">
+        <li>📅 Project milestone tracking and timeline</li>
+        <li>👥 Team collaboration and role management</li>
+        <li>📊 Project progress visualization and analytics</li>
+        <li>📤 Deliverable upload and file management</li>
+    </ul>
+</section>
+
+<style>
+    .stats-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-card h4 {
+        margin: 0 0 0.5rem 0;
+        color: var(--primary-color);
+        font-size: 0.9rem;
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 0;
+    }
+
+    .progress-bar {
+        background: #e0e0e0;
+        height: 24px;
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-fill {
+        background: linear-gradient(90deg, #FF9800, #F57C00);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transition: width 0.3s ease;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .empty-state {
+        background: #f9f9f9;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        color: #999;
+    }
+
+    @media (max-width: 768px) {
+        .stats-cards {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+
+        .action-buttons .btn-small {
+            margin-right: 0 !important;
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+

@@ -1,0 +1,446 @@
+{% extends 'publicsite/base_public.html' %}
+
+{% block title %}Chatake Innoworks — Professional Learning & Development Platform{% endblock %}
+
+{% block content %}
+<style>
+    .hero-home {
+        background: #2E2E2E;
+        color: #F7F6F3;
+        padding: 5rem 1.5rem;
+        text-align: center;
+    }
+
+    .hero-home h1 {
+        color: #F7F6F3;
+        margin-bottom: 1rem;
+        font-size: 3rem;
+        font-family: 'Merriweather', serif;
+    }
+
+    .hero-home .subtitle {
+        font-size: 1.25rem;
+        color: #B08D57;
+        margin-bottom: 2rem;
+    }
+
+    .hero-home .description {
+        font-size: 1.05rem;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        color: #E0DDD8;
+        line-height: 1.8;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .divisions-section {
+        padding: 4rem 1.5rem;
+        background-color: #F7F6F3;
+    }
+
+    .divisions-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .divisions-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .divisions-header h2 {
+        color: #2E2E2E;
+        margin-bottom: 1rem;
+    }
+
+    .divisions-header p {
+        font-size: 1.05rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .divisions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .division-card {
+        background-color: #FFFFFF;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-top: 4px solid #7A1F2B;
+        transition: all 0.3s ease;
+    }
+
+    .division-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px);
+    }
+
+    .division-card h3 {
+        color: #7A1F2B;
+        margin-top: 0;
+    }
+
+    .division-card p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .features-section {
+        padding: 4rem 1.5rem;
+        background-color: #FFFFFF;
+    }
+
+    .features-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .features-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .features-header h2 {
+        color: #2E2E2E;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature-item {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .feature-item h4 {
+        color: #2E2E2E;
+        margin-bottom: 0.5rem;
+    }
+
+    .feature-item p {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .company-info {
+        padding: 4rem 1.5rem;
+        background-color: #F7F6F3;
+        text-align: center;
+    }
+
+    .company-info-content {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .company-info h2 {
+        color: #2E2E2E;
+    }
+
+    .company-info p {
+        color: #666;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .company-links {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* Research Projects Section */
+    .research-section {
+        padding: 4rem 1.5rem;
+        background-color: #F7F6F3;
+    }
+
+    .research-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .research-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .research-header h2 {
+        color: #2E2E2E;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .research-header p {
+        color: #666;
+        font-size: 1.05rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .research-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .research-card {
+        background: #FFFFFF;
+        padding: 2rem;
+        border-radius: 8px;
+        border-left: 4px solid #7A1F2B;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .research-card h3 {
+        color: #7A1F2B;
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .research-card p {
+        color: #666;
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+
+    /* Podcast Section */
+    .podcast-section {
+        padding: 4rem 1.5rem;
+        background-color: #FFFFFF;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .podcast-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .podcast-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .podcast-header h2 {
+        color: #2E2E2E;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .podcast-header p {
+        color: #666;
+        font-size: 1.05rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .podcast-card {
+        background: #F7F6F3;
+        padding: 2.5rem;
+        border-radius: 8px;
+        border-left: 4px solid #B08D57;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .podcast-card h3 {
+        color: #2E2E2E;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .podcast-card p {
+        color: #666;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+</style>
+
+<!-- Hero Section -->
+<section class="hero-home">
+    <h1>Chatake Innoworks Pvt. Ltd.</h1>
+    <p class="subtitle">Engineering Ideas. Empowering Innovation.</p>
+    <p class="description">
+        A family-rooted AI–IT research startup building intelligent software–hardware systems and connecting academia with industry 
+        through cutting-edge research and practical applications.
+    </p>
+    <div class="cta-buttons">
+        <a href="{% url 'admin:login' %}" class="btn btn-primary">Student / Faculty Login</a>
+        <a href="{% url 'publicsite:about' %}" class="btn btn-tertiary">Explore Our Divisions</a>
+    </div>
+</section>
+
+<!-- Divisions Section -->
+<section class="divisions-section">
+    <div class="divisions-container">
+        <div class="divisions-header">
+            <h2>Strategic Divisions</h2>
+            <p>Our organization operates through four specialized divisions, each contributing unique expertise to our comprehensive AI–IT ecosystem.</p>
+        </div>
+
+        <div class="divisions-grid">
+            <div class="division-card" id="minforge-ai">
+                <h3>MindforgeAI</h3>
+                <p>The R&D engine driving our innovation forward. Focuses on Advanced AI research, Deep Learning applications, and Robotics & Automation integration.</p>
+            </div>
+
+            <div class="division-card" id="codesmith">
+                <h3>CodeSmith Systems</h3>
+                <p>The digital backbone providing robust technological infrastructure. Specializes in Enterprise Software development, IT Infrastructure management, and Cybersecurity solutions.</p>
+            </div>
+
+            <div class="division-card" id="greenworks">
+                <h3>Chatake GreenWorks</h3>
+                <p>"Engineering Intelligence for a Sustainable Planet." Leverages AI-driven solutions for agriculture, precision crop monitoring, and the revolutionary AgriVerse platform.</p>
+            </div>
+
+            <div class="division-card" id="edusphere">
+                <h3>EduSphere</h3>
+                <p>Merging AI education with real-world application. Translates complex system workflows into accessible Faculty Development Programs that empower academia.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="features-container">
+        <div class="features-header">
+            <h2>Why Choose Chatake Innoworks</h2>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <span class="feature-icon">🎯</span>
+                <h4>Institutional Grade</h4>
+                <p>Built to institutional standards with rigorous quality and security</p>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">🔗</span>
+                <h4>Integrated Platform</h4>
+                <p>Seamless integration across all divisions and modules</p>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">📊</span>
+                <h4>Analytics & Insights</h4>
+                <p>Comprehensive reporting and analytics for decision-making</p>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">🔒</span>
+                <h4>Secure & Reliable</h4>
+                <p>Enterprise-grade security and 99.9% uptime commitment</p>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <h4>Fast & Responsive</h4>
+                <p>Optimized performance across all devices and connections</p>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">💬</span>
+                <h4>Professional Support</h4>
+                <p>Dedicated support team for implementation and operations</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research Projects Section -->
+<section class="research-section">
+    <div class="research-container">
+        <div class="research-header">
+            <h2>Key Research Projects</h2>
+            <p>Our research portfolio encompasses groundbreaking projects that push the boundaries of AI and sustainable technology.</p>
+        </div>
+
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Project Apollo</h3>
+                <p>An AI-driven agricultural intelligence platform revolutionizing smart irrigation and yield improvement through predictive analytics and real-time environmental monitoring.</p>
+            </div>
+
+            <div class="research-card">
+                <h3>AgriVerse Platform</h3>
+                <p>Integrated IoT and AI ecosystem for comprehensive soil health analysis and precision crop monitoring, enabling data-driven agricultural decisions.</p>
+            </div>
+
+            <div class="research-card">
+                <h3>Sustain+ Framework</h3>
+                <p>Environmental monitoring system utilizing advanced sensors and AI algorithms to track ecosystem health, biodiversity indicators, and climate patterns.</p>
+            </div>
+
+            <div class="research-card">
+                <h3>Architectural AI</h3>
+                <p>Pioneering AI systems for semantic understanding in architectural design, facilitating intelligent spatial planning and design optimization.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Podcast Section -->
+<section class="podcast-section">
+    <div class="podcast-container">
+        <div class="podcast-header">
+            <h2>Podcast & Content</h2>
+            <p>Explore our latest podcast episodes, research insights, and expert discussions on AI, sustainable technology, and innovation.</p>
+        </div>
+
+        <div class="podcast-card">
+            <h3>Chatake Voices Podcast</h3>
+            <p>
+                Dive deep into conversations with industry experts, researchers, and thought leaders on the latest developments in 
+                Artificial Intelligence, robotics, sustainable agriculture, and the future of technology. Our podcast brings cutting-edge 
+                research directly to your ears.
+            </p>
+            <p style="color: #B08D57; font-style: italic;">Available on major podcast platforms</p>
+        </div>
+    </div>
+</section>
+
+<!-- Company Info -->
+<section class="company-info">
+    <div class="company-info-content">
+        <h2>About Chatake Innoworks</h2>
+        <p>
+            We are an AI–IT research and development startup dedicated to building intelligent systems and bridging the gap 
+            between academic research and industrial application. Our commitment to excellence, innovation, and sustainable 
+            growth shapes everything we do.
+        </p>
+        <div class="company-links">
+            <a href="{% url 'publicsite:about' %}" class="btn btn-secondary">Learn More</a>
+            <a href="https://about.chatakeinnoworks.com/" target="_blank" class="btn btn-secondary">Company Profile</a>
+            <a href="{% url 'publicsite:contact' %}" class="btn btn-primary">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

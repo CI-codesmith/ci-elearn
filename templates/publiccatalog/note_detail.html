@@ -1,0 +1,203 @@
+{% extends 'publicsite/base_public.html' %}
+
+{% block title %}{{ note.title }} — Chatake Innoworks{% endblock %}
+
+{% block content %}
+<style>
+    .note-header {
+        background: #2E2E2E;
+        color: #F7F6F3;
+        padding: 3rem 1.5rem;
+        border-bottom: 3px solid #B08D57;
+    }
+
+    .note-header-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .note-header h1 {
+        font-size: 2rem;
+        margin: 0 0 1rem 0;
+        font-family: 'Merriweather', serif;
+    }
+
+    .note-breadcrumbs {
+        font-size: 0.9rem;
+        color: #B08D57;
+    }
+
+    .note-breadcrumbs a {
+        color: #B08D57;
+        text-decoration: none;
+    }
+
+    .note-breadcrumbs a:hover {
+        color: #FFFFFF;
+    }
+
+    .note-meta {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #EEEBE5;
+        font-size: 0.9rem;
+        color: #999;
+    }
+
+    .note-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem;
+    }
+
+    .note-content h2,
+    .note-content h3 {
+        font-family: 'Merriweather', serif;
+        color: #2E2E2E;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .note-content p {
+        color: #666;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .note-body {
+        background: #FFFFFF;
+        border: 1px solid #EEEBE5;
+        border-radius: 4px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        line-height: 1.8;
+        color: #333;
+    }
+
+    .note-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin: 1.5rem 0;
+    }
+
+    .related-notes {
+        background: #F7F6F3;
+        border: 1px solid #EEEBE5;
+        border-radius: 4px;
+        padding: 2rem;
+        margin-top: 3rem;
+    }
+
+    .related-notes h3 {
+        color: #2E2E2E;
+        font-size: 1.25rem;
+        margin-top: 0;
+        font-family: 'Merriweather', serif;
+    }
+
+    .related-notes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .related-note-item {
+        background: #FFFFFF;
+        padding: 1rem;
+        border: 1px solid #EEEBE5;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #7A1F2B;
+        transition: all 0.3s ease;
+    }
+
+    .related-note-item:hover {
+        background: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .related-note-item strong {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2E2E2E;
+    }
+
+    .related-note-item small {
+        color: #999;
+        font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+        .note-header h1 {
+            font-size: 1.5rem;
+        }
+
+        .note-meta {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+</style>
+
+<div class="note-header">
+    <div class="note-header-content">
+        <h1>{{ note.title }}</h1>
+        <p class="note-breadcrumbs">
+            <a href="{% url 'publiccatalog:course_list' %}">Courses</a> /
+            <a href="{% url 'publiccatalog:course_detail' course.slug %}">{{ course.name }}</a> /
+            <a href="{% url 'publiccatalog:subject_detail' course.slug subject.slug %}">{{ subject.name }}</a> /
+            <a href="{% url 'publiccatalog:unit_detail' course.slug subject.slug unit.id %}">Unit {{ unit.unit_number }}</a>
+        </p>
+        <div class="note-meta">
+            <span>📅 {{ note.created_at|date:"F d, Y" }}</span>
+            {% if note.file %}
+                <span>📄 Document</span>
+            {% endif %}
+            <span>📖 {{ unit.title }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="note-content">
+    <div class="note-body">
+        {{ note.content|safe }}
+    </div>
+
+    {% if note.file %}
+        <div style="padding: 1.5rem; background: #F7F6F3; border-radius: 4px; margin-bottom: 2rem;">
+            <p style="margin: 0 0 1rem 0;">
+                <strong>Original Document:</strong>
+            </p>
+            <a href="{{ note.file.url }}" target="_blank" style="display: inline-block; padding: 0.75rem 1.5rem; background: #7A1F2B; color: #FFFFFF; text-decoration: none; border-radius: 4px; font-weight: 600;">
+                Download {{ note.file.name }} →
+            </a>
+        </div>
+    {% endif %}
+
+    {% if related_notes %}
+        <div class="related-notes">
+            <h3>Related Notes in {{ unit.title }}</h3>
+            <p style="color: #666; margin-bottom: 1rem;">Continue learning with other materials from this unit.</p>
+            <div class="related-notes-grid">
+                {% for rel_note in related_notes %}
+                    <a href="{% url 'publiccatalog:note_detail' rel_note.id %}" class="related-note-item">
+                        <strong>{{ rel_note.title|truncatewords:5 }}</strong>
+                        <small>{{ rel_note.created_at|date:"M d" }}</small>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid #EEEBE5; text-align: center;">
+        <a href="{% url 'publiccatalog:course_list' %}" style="display: inline-block; padding: 0.75rem 1.5rem; background: #7A1F2B; color: #FFFFFF; text-decoration: none; border-radius: 4px; font-weight: 600;">
+            ← Back to Courses
+        </a>
+    </div>
+</div>
+{% endblock %}
