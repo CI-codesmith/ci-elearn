@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
 
+    'lms',  # Core LMS app with management commands
     'students',
     'courses',
     'assessments',
