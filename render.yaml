@@ -4,8 +4,8 @@ services:
     env: python
     region: oregon
     plan: free
-    buildCommand: pip install -r requirements.txt && python manage.py migrate && python manage.py loaddata data_backup.json 2>/dev/null || true && python manage.py collectstatic --no-input
-    startCommand: gunicorn lms.wsgi:application
+    buildCommand: pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --no-input
+    startCommand: python manage.py init_db && gunicorn lms.wsgi:application
     envVars:
       - key: SECRET_KEY
         scope: build
